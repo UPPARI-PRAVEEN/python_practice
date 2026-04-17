@@ -1,0 +1,145 @@
+# 📘 Normalization in SQL
+
+## 🔹 What is Normalization?
+
+Normalization is the process of **organizing data in a database** to:
+
+* Reduce **redundancy (duplicate data)**
+* Improve **data consistency**
+* Avoid **anomalies (insert, update, delete issues)**
+
+👉 In simple words:
+**It breaks large tables into smaller, related tables**
+
+---
+
+## 🔹 Why Normalization?
+
+* Removes duplicate data
+* Improves data integrity
+* Makes database efficient
+* Reduces storage waste
+
+---
+
+## 🔹 Types of Normalization (Normal Forms)
+
+### 🔹 1. First Normal Form (1NF)
+
+👉 Rules:
+
+* Each column should have **atomic (single) values**
+* No repeating groups or arrays
+
+📌 Example (Bad):
+
+| ID | Name | Phone Numbers |
+| -- | ---- | ------------- |
+| 1  | John | 123, 456      |
+
+📌 After 1NF:
+
+| ID | Name | Phone |
+| -- | ---- | ----- |
+| 1  | John | 123   |
+| 1  | John | 456   |
+
+---
+
+### 🔹 2. Second Normal Form (2NF)
+
+👉 Rules:
+
+* Must be in 1NF
+* No **partial dependency** (non-key should depend on full primary key)
+
+📌 Problem: Composite key dependency
+
+👉 Solution: Split tables into proper relations
+
+---
+
+### 🔹 3. Third Normal Form (3NF)
+
+👉 Rules:
+
+* Must be in 2NF
+* No **transitive dependency** (non-key depends on non-key)
+
+📌 Example:
+| ID | Name | Dept | Dept Location |
+
+👉 Dept Location depends on Dept, not ID → redundancy
+
+✔ Fix: Separate Department table
+
+---
+
+### 🔹 4. Boyce-Codd Normal Form (BCNF)
+
+👉 Stronger version of 3NF
+👉 Every determinant must be a **candidate key**
+
+Used when 3NF still has anomalies
+
+---
+
+## 🔹 Anomalies (Important 🔥)
+
+### 1. Insertion Anomaly
+
+👉 Cannot insert data without unrelated data
+
+### 2. Update Anomaly
+
+👉 Same data must be updated in multiple places
+
+### 3. Deletion Anomaly
+
+👉 Deleting one record removes important data unintentionally
+
+---
+
+## 🔹 Example of Normalization
+
+### ❌ Without Normalization:
+
+| Student | Course | Instructor |
+| ------- | ------ | ---------- |
+| A       | Java   | Mr. X      |
+| A       | SQL    | Mr. X      |
+
+👉 Redundant instructor data
+
+---
+
+### ✅ After Normalization:
+
+**Student Table**
+
+| Student | Course |
+| ------- | ------ |
+| A       | Java   |
+| A       | SQL    |
+
+**Course Table**
+
+| Course | Instructor |
+| ------ | ---------- |
+| Java   | Mr. X      |
+| SQL    | Mr. X      |
+
+---
+
+## 🔹 Key Points
+
+* Reduces redundancy
+* Improves consistency
+* Splits large tables into smaller ones
+* Helps maintain clean database design
+
+---
+
+## 🔹 Interview Answer (Short)
+
+> Normalization is the process of organizing database tables to reduce redundancy and improve data integrity by dividing large tables into smaller related tables following normal forms like 1NF, 2NF, and 3NF.

@@ -1,0 +1,157 @@
+# 📘 SQL Indexes
+
+## 🔹 What is an Index?
+
+An **index** in SQL is used to **speed up data retrieval** from a table.
+
+👉 Works like a book index — helps find data quickly without scanning the whole table.
+
+---
+
+## 🔹 Why use Index?
+
+* Faster `SELECT` queries 🚀
+* Improves search performance
+* Avoids full table scan
+
+❗ Drawback:
+
+* Slows down `INSERT`, `UPDATE`, `DELETE` operations
+
+---
+
+## 🔹 Syntax
+
+```sql
+CREATE INDEX index_name
+ON table_name(column_name);
+```
+
+---
+
+## 🔹 Example
+
+```sql
+CREATE INDEX idx_name
+ON employees(name);
+```
+
+---
+
+## 🔹 Types of Indexes
+
+### 1. Single Column Index
+
+👉 Index created on a single column to speed up queries on that column.
+
+```sql
+CREATE INDEX idx_emp_name
+ON employees(name);
+```
+
+---
+
+### 2. Composite Index
+
+👉 Index created on multiple columns.
+👉 Useful when queries filter using **multiple columns together**.
+
+```sql
+CREATE INDEX idx_emp_name_dept
+ON employees(name, department);
+```
+
+📌 Works best when query uses same column order:
+
+```sql
+WHERE name = 'John' AND department = 'IT'
+```
+
+---
+
+### 3. Unique Index
+
+👉 Ensures all values in the column are **unique (no duplicates allowed)**.
+
+```sql
+CREATE UNIQUE INDEX idx_email
+ON users(email);
+```
+
+📌 Automatically created for `UNIQUE` constraints.
+
+---
+
+### 4. Primary Index
+
+👉 Created automatically when you define a **PRIMARY KEY**.
+👉 Ensures:
+
+* Uniqueness
+* No NULL values
+
+```sql
+PRIMARY KEY (id)
+```
+
+---
+
+### 5. Clustered Index
+
+👉 Determines **physical storage order of data** in the table.
+👉 Data is stored in sorted order based on the index column.
+
+✔ Only **one clustered index per table**
+✔ Faster for range queries (`BETWEEN`, `ORDER BY`)
+
+---
+
+### 6. Non-Clustered Index
+
+👉 Stored separately from table data.
+👉 Contains pointers to actual rows.
+
+✔ Multiple non-clustered indexes allowed
+✔ Good for frequent search conditions
+
+---
+
+## 🔹 View Index
+
+```sql
+SHOW INDEX FROM table_name;
+```
+
+---
+
+## 🔹 Drop Index
+
+```sql
+DROP INDEX idx_name ON employees;
+```
+
+---
+
+## 🔹 Real-Time Example
+
+```sql
+SELECT * FROM employees WHERE name = 'John';
+```
+
+Without index → Full table scan (slow)
+With index → Fast lookup
+
+---
+
+## 🔹 Key Points
+
+* Improves read performance
+* Uses B-tree structure
+* Slows write operations
+* Useful on `WHERE`, `JOIN`, `ORDER BY`
+
+---
+
+## 🔹 Interview Answer (Short)
+
+> Index is used to improve query performance by avoiding full table scans and enabling faster data retrieval. It uses structures like B-tree and has trade-offs with write operations.

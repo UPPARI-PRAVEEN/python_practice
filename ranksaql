@@ -1,0 +1,125 @@
+# 📘 Ranking Functions in SQL
+
+## 🔹 What is Ranking in SQL?
+
+Ranking functions are used to **assign a rank/position to rows** based on a column value (like marks, salary, score).
+
+👉 They are part of **window functions**
+
+---
+
+## 🔹 Types of Ranking Functions
+
+SQL provides 3 main ranking functions:
+
+* `RANK()`
+* `DENSE_RANK()`
+* `ROW_NUMBER()`
+
+---
+
+## 🔹 1. RANK()
+
+👉 Assigns rank with **gaps** when values are equal.
+
+📌 Same values → same rank
+📌 Next rank skips numbers
+
+```sql id="q3n8g1"
+SELECT name, salary,
+RANK() OVER (ORDER BY salary DESC) AS rnk
+FROM employees;
+```
+
+### Example Output:
+
+| Name | Salary | Rank |
+| ---- | ------ | ---- |
+| A    | 50000  | 1    |
+| B    | 50000  | 1    |
+| C    | 40000  | 3    |
+
+👉 Notice: rank 2 is skipped
+
+---
+
+## 🔹 2. DENSE_RANK()
+
+👉 Assigns rank **without gaps**
+
+📌 Same values → same rank
+📌 Next rank is continuous
+
+```sql id="t8m1kp"
+SELECT name, salary,
+DENSE_RANK() OVER (ORDER BY salary DESC) AS drnk
+FROM employees;
+```
+
+### Example Output:
+
+| Name | Salary | Dense Rank |
+| ---- | ------ | ---------- |
+| A    | 50000  | 1          |
+| B    | 50000  | 1          |
+| C    | 40000  | 2          |
+
+---
+
+## 🔹 3. ROW_NUMBER()
+
+👉 Gives **unique sequential numbers**
+👉 No duplicates, even if values are same
+
+```sql id="h2wq8f"
+SELECT name, salary,
+ROW_NUMBER() OVER (ORDER BY salary DESC) AS rn
+FROM employees;
+```
+
+### Example Output:
+
+| Name | Salary | Row Number |
+| ---- | ------ | ---------- |
+| A    | 50000  | 1          |
+| B    | 50000  | 2          |
+| C    | 40000  | 3          |
+
+---
+
+## 🔹 Partitioning (Very Important 🔥)
+
+👉 Ranking within groups using `PARTITION BY`
+
+```sql id="k9zv21"
+SELECT name, department, salary,
+RANK() OVER (PARTITION BY department ORDER BY salary DESC) AS rnk
+FROM employees;
+```
+
+📌 Ranking resets for each department
+
+---
+
+## 🔹 Difference Summary
+
+| Function     | Duplicates Rank | Gaps | Unique |
+| ------------ | --------------- | ---- | ------ |
+| RANK()       | Yes             | Yes  | No     |
+| DENSE_RANK() | Yes             | No   | No     |
+| ROW_NUMBER() | No              | No   | Yes    |
+
+---
+
+## 🔹 Real-Time Use Cases
+
+* Top 3 highest salaries
+* Student ranking
+* Leaderboards
+* Department-wise ranking
+
+---
+
+## 🔹 Interview Answer (Short)
+
+> Ranking functions in SQL are window functions used to assign ranks to rows based on ordering. RANK, DENSE_RANK, and ROW_NUMBER differ in how they handle duplicates and gaps in ranking.

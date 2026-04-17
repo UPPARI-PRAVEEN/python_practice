@@ -1,0 +1,32 @@
+Iterator in Python
+
+“Iterator is an object used to iterate over data one element at a time.
+It implements __iter__() and __next__() methods.
+It helps in memory-efficient traversal because it doesn’t load all data at once.”
+# Example of an iterator in Python
+lst = [10, 20, 30]
+
+it = iter(lst)   # convert to iterator
+
+print(next(it))  # 10
+print(next(it))  # 20
+print(next(it))  # 30
+
+
+What is Exception Handling?
+
+Exception handling is used to handle runtime errors so that the program doesn’t crash and runs smoothly.
+syntax:
+try:
+    # code that may raise an exception
+except ExceptionType:
+    # code to handle the exception
+else:
+    # code to execute if no exception occurs
+finally:
+    # code to execute regardless of exceptions
+# Example of exception handling
+try:
+    x = 10 / 0  # This will raise ZeroDivisionError
+except ZeroDivisionError:
+    print("Cannot divide by zero!")

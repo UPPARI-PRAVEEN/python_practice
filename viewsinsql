@@ -1,0 +1,156 @@
+# 📘 SQL Views
+
+## 🔹 What is a View?
+
+A **view** is a **virtual table** in SQL created from a query.
+
+👉 It does not store data physically
+👉 It shows data from one or more tables
+
+---
+
+## 🔹 Why use Views?
+
+* Simplifies complex queries
+* Improves security (restrict access to specific columns)
+* Reusable query logic
+* Provides abstraction layer
+
+---
+
+## 🔹 Syntax
+
+```sql
+CREATE VIEW view_name AS
+SELECT column1, column2
+FROM table_name
+WHERE condition;
+```
+
+---
+
+## 🔹 Example
+
+```sql
+CREATE VIEW emp_view AS
+SELECT name, salary
+FROM employees
+WHERE department = 'IT';
+```
+
+👉 Now you can use:
+
+```sql
+SELECT * FROM emp_view;
+```
+
+---
+
+## 🔹 Types of Views
+
+### 1. Simple View
+
+👉 Created from a **single table**
+👉 Does not contain complex functions or joins
+👉 Supports `INSERT`, `UPDATE`, `DELETE`
+
+```sql
+CREATE VIEW simple_view AS
+SELECT name, salary
+FROM employees;
+```
+
+---
+
+### 2. Complex View
+
+👉 Created using **multiple tables, joins, or functions**
+👉 May include `GROUP BY`, `SUM`, `COUNT`
+👉 Mostly **read-only**
+
+```sql
+CREATE VIEW complex_view AS
+SELECT e.name, d.department_name
+FROM employees e
+JOIN departments d
+ON e.dept_id = d.id;
+```
+
+---
+
+### 3. Materialized View
+
+👉 Stores data **physically** (unlike normal views)
+👉 Improves performance for heavy queries
+👉 Needs manual refresh
+
+```sql
+CREATE MATERIALIZED VIEW mat_view AS
+SELECT department, COUNT(*) AS total
+FROM employees
+GROUP BY department;
+```
+
+---
+
+### 4. Inline View
+
+👉 A view used inside a query (subquery in FROM clause)
+👉 Not stored permanently
+
+```sql
+SELECT *
+FROM (
+    SELECT name, salary
+    FROM employees
+) AS temp_view;
+```
+
+---
+
+## 🔹 Update View
+
+```sql
+UPDATE emp_view
+SET salary = 50000
+WHERE name = 'John';
+```
+
+📌 Works only if view is updatable (simple view)
+
+---
+
+## 🔹 Drop View
+
+```sql
+DROP VIEW emp_view;
+```
+
+---
+
+## 🔹 Real-Time Example
+
+👉 Hide sensitive data:
+
+```sql
+CREATE VIEW emp_public AS
+SELECT name, department
+FROM employees;
+```
+
+➡️ Users can’t see salary column
+
+---
+
+## 🔹 Key Points
+
+* View = virtual table
+* No physical storage (except materialized view)
+* Improves security and readability
+* Complex views are mostly read-only
+
+---
+
+## 🔹 Interview Answer (Short)
+
+> A view is a virtual table based on a SQL query. It is used to simplify complex queries, improve security, and provide abstraction without storing data physically.
