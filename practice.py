@@ -92,3 +92,42 @@
 
 
 # print(ls)
+
+# ls =  [-2,1,-3,4,-1,2,1,-5,4]
+# currSum = ls[0] #1 -2 4 3 5
+# maxSum =ls[0]
+# stIndex = 0
+# endIndex = 0
+# tempIndex = 0;
+# #Max subarray sum 
+# #OUTUT: 6 [4,-1,2,1]
+# for i in range(1,len(ls)):
+#     if ls[i] > currSum+ls[i]:
+#         currSum = ls[i]
+#         tempIndex = i//1
+#     else:
+#         currSum += ls[i]
+#     if currSum > maxSum:# 1 > -2
+#         maxSum = currSum #1
+#         stIndex = tempIndex #1 4
+#         endIndex = i;#1 5 6
+# print(stIndex,endIndex)
+# print(ls[stIndex:endIndex+1])
+
+# st = "I love python"
+# # Output: "python love I"
+# res = "";
+# word = ""
+# for ch in st:
+    
+#     if ch != ' ':
+#         word += ch;
+#     else: 
+#         res = word + " " + res;
+#         word = ""
+# res = word + " " + res
+
+# print(res)
+        
+        
+    
