@@ -128,6 +128,39 @@
 # res = word + " " + res
 
 # print(res)
+
+
+# ls = [1,3,2,4]
+# targetSum = 6
+# res = []
+
+# for i in range(len(ls)):
+#     nested = []
+#     sumEle = 0
+    
+#     for j in range(i, len(ls)):
+#         nested.append(ls[j])
+#         sumEle += ls[j]
+        
+#         if sumEle == targetSum:
+#             res.append(nested[:])   # copy
+#             break
+
+# print(res)
+
+
+
+st = "xyz" #azy
+res = ""
+for ch in st:
+    chars = ""
+    if ord(ch) == 122 or ord(ch) == 90:
+        chars = chr(ord(ch) - 25)
+    else:
+        chars = chr(ord(ch) + 1)
+    res = chars + res
+    chars = ""
+print(res)
         
         
     
