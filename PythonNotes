@@ -1,0 +1,62 @@
+What are key fewtures of Python?
+
+Python is a high-level, interpreted, and object-oriented programming language. It is dynamically typed, which allows faster development. It has a simple and readable syntax, making it easy to learn and maintain. Python is platform-independent, so it can run on different operating systems. It also provides automatic memory management through garbage collection. Additionally, it has a large standard library and a rich ecosystem of third-party libraries
+
+
+why python is dynamically typed?
+A dynamically typed language is one where you don’t need to declare the data type of a variable explicitly. The type is determined automatically at runtime based on the value assigned. This makes coding faster and more flexible, but it can also lead to more runtime errors if types are misused.
+
+shallow vs deep copy in python?
+A dynamically typed language is one where you don’t need to declare the data type of a variable explicitly. The type is determined automatically at runtime based on the value assigned. This makes coding faster and more flexible, but it can also lead to more runtime errors if types are misused.
+
+funcitona and *args, **kwargs in python?
+“Functions in Python are blocks of code used to perform a specific task. They help in code reusability and make the program more modular and organized. We define a function using the def keyword.
+
+*args is used to pass a variable number of positional arguments to a function. These arguments are stored as a tuple.
+
+**kwargs is used to pass a variable number of keyword arguments, which are stored as a dictionary in key-value pair format.”
+
+object-oriented programming in python?
+Object-Oriented Programming (OOP) is a programming paradigm based on classes and objects, where real-world entities are represented using properties (attributes) and behaviors (methods).
+
+The four main pillars of OOP are:
+
+Encapsulation: Wrapping data and methods into a single unit (class) and restricting direct access to data.
+Inheritance: Allowing one class (child) to acquire properties and methods from another class (parent), which promotes code reuse.
+Polymorphism: The ability of an object to take multiple forms, such as method overloading or method overriding.
+Abstraction: Hiding implementation details and showing only essential features to the user.”
+
+static method vs class method in python?
+A static method is a method defined inside a class using the @staticmethod decorator. It does not take self or cls as parameters and cannot directly access instance or class variables. It is used when the method does not depend on class or instance data.
+
+A class method is defined using the @classmethod decorator and takes cls as its first parameter. It can access and modify class-level variables and is used when we want to work with the class rather than individual instances.
+
+GIL in python?
+The Global Interpreter Lock (GIL) is a mechanism in Python that allows only one thread to execute Python bytecode at a time within a single process.
+
+This is mainly used to ensure thread safety and simplify memory management in CPython. Because of the GIL, even in a multi-threaded program, only one thread runs at a time for CPU-bound tasks, which limits true parallelism.”
+
+init method in python?
+The __init__ method in Python is a special method, also known as a constructor. It is automatically called when an object of a class is created. It is used to initialize instance variables of the class. The first parameter is always self, which refers to the current instance
+
+
+what is with statement in python?
+opening a file and closing a file
+
+finally block in python?
+“The finally block in Python is used to define code that will always execute, regardless of whether an exception occurs or not. It is typically used for cleanup operations like closing files or releasing resources.
+
+error vs exception in python?
+In Python, both errors and exceptions occur at runtime, but they differ in how they are handled.
+
+An exception is a runtime issue that can be handled using try-except blocks, allowing the program to continue execution.
+
+An error is a more serious problem, such as a syntax error or system-level issue, which usually cannot be handled easily and may stop the program execution.
+
+what is ORM in python?
+ORM stands for Object-Relational Mapping. It is a programming technique that allows developers to interact with
+databases using Python classes and objects instead of writing raw SQL queries. ORM provides a high-level abstraction over the database, making it easier to perform CRUD (Create, Read, Update, Delete) operations without needing to understand the underlying database structure.
+You work with Python classes & objects, ORM converts them into database tables & SQL.
+
+What is virtual environment?
+A virtual environment in Python is an isolated environment that allows you to manage dependencies for different projects separately. It helps to avoid conflicts between packages and ensures that each project has its own set of dependencies. You can create a virtual environment using tools like venv or virtualenv, and it allows you to install packages without affecting the global Python installation.
