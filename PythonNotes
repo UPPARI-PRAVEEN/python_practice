@@ -60,3 +60,57 @@ You work with Python classes & objects, ORM converts them into database tables &
 
 What is virtual environment?
 A virtual environment in Python is an isolated environment that allows you to manage dependencies for different projects separately. It helps to avoid conflicts between packages and ensures that each project has its own set of dependencies. You can create a virtual environment using tools like venv or virtualenv, and it allows you to install packages without affecting the global Python installation.
+
+
+what is yield in python?
+“The yield keyword in Python is used to create a generator function. Instead of returning all values at once like return, 
+it produces values one at a time and pauses the function execution, resuming from where it left off when called again.”
+def demo():
+    print("start")
+    yield 1
+    print("middle")
+    yield 2
+d = demo()
+print(next(d))  # start → 1
+print(next(d))  # middle → 2   
+
+
+what is the difference between iterable and iterator in python?
+An iterable is any object that can be looped over, like a list, tuple, or string. It implements the __iter__() method.
+
+An iterator is an object that actually performs the iteration. It keeps track of the current position and implements both __iter__() and __next__() methods to return elements one by one.”
+
+| Feature | Iterable            | Iterator                     |
+| ------- | ------------------- | ---------------------------- |
+| Purpose | Can be looped over  | Produces elements one by one |
+| Methods | `__iter__()`        | `__iter__()` + `__next__()`  |
+| Example | list, tuple, string | object from `iter()`         |
+
+
+my_list = [1, 2, 3]
+
+# Iterable
+print(iter(my_list))  # returns iterator
+
+# Iterator
+it = iter(my_list)
+print(next(it))  # 1
+print(next(it))  # 2
+
+difference between stack and heap in python?
+Stack and heap are two types of memory used in a program.
+
+Stack memory is used for static memory allocation, such as function calls and local variables. It is fast and managed automatically.
+
+Heap memory is used for dynamic memory allocation, where objects are created at runtime. It is slower compared to stack and is managed manually or by a garbage collector.”
+
+what is the difference between import and from import in python?
+import module imports the entire module, and we need to access its functions or variables using the module name as a prefix.
+
+from module import * imports all names from the module directly into the current namespace, so we can use them without the module prefix. However, it is not recommended because it can lead to name conflicts and reduces code readability.”\
+import module
+import math
+print(math.sqrt(16))  # 4.0
+2. from module import *
+from math import *
+print(sqrt(16))  # 4.0

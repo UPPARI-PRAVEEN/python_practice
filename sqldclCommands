@@ -1,0 +1,10 @@
+Dcl commands in sql
+Data Control Language (DCL) commands in SQL are used to control access to data in a database. The two main DCL commands are:
+1. GRANT: This command is used to give specific privileges to users or roles. For example, you can grant SELECT, INSERT, UPDATE, or DELETE permissions on a table to a user.
+2. REVOKE: This command is used to remove previously granted privileges from users or roles. For example, you can revoke SELECT permission from a user on a specific table.
+eg:
+```sql-- Grant SELECT permission on the Employees table to user 'john'
+GRANT SELECT ON Employees TO john;  
+-- Revoke SELECT permission on the Employees table from user 'john'
+REVOKE SELECT ON Employees FROM john;
+```

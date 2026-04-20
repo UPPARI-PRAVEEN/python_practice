@@ -1,0 +1,17 @@
+
+instert multiple records into the table
+INSERT INTO Customers VALUES
+(6,"PRVEEN","UPPARI",25,"india"),
+(7,"arun","uma",26,"inida")
+(8,"suresh","kumar",27,"india"),
+(9,"rajesh","kumar",28,"india"),
+(10,"ramesh","kumar",29,"india");
+
+update the record in the table
+UPDATE Customers
+SET age = 45
+where customer_id = 7;
+
+delete the record from the table
+DELETE FROM Customers
+WHERE customer_id = 10;

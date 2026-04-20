@@ -1,0 +1,19 @@
+SQL TCL
+commands in SQL are used to manage transactions in a database. The main TCL commands are:
+1. COMMIT: This command is used to save all changes made during the current transaction to the database. Once a COMMIT is issued, the changes become permanent and cannot be rolled back.
+2. ROLLBACK: This command is used to undo all changes made during the current transaction. If a ROLLBACK is issued, the database will revert to the state it was in before the transaction began.
+3. SAVEPOINT: This command is used to set a savepoint within a transaction. A savepoint allows you to roll back to a specific point in the transaction without affecting the entire transaction. You can create multiple savepoints within a transaction and roll back to any of them as needed.
+eg:
+```sql-- Start a transaction
+BEGIN TRANSACTION;  
+-- Perform some operations
+INSERT INTO Employees (name, department) VALUES ('Alice', 'HR');
+-- Set a savepoint
+SAVEPOINT Savepoint1;
+-- Perform more operations
+INSERT INTO Employees (name, department) VALUES ('Bob', 'IT');  
+-- Roll back to the savepoint
+ROLLBACK TO Savepoint1;
+-- Commit the transaction
+COMMIT;
+```
