@@ -150,17 +150,101 @@
 
 
 
-st = "xyz" #azy
-res = ""
-for ch in st:
-    chars = ""
-    if ord(ch) == 122 or ord(ch) == 90:
-        chars = chr(ord(ch) - 25)
-    else:
-        chars = chr(ord(ch) + 1)
-    res = chars + res
-    chars = ""
-print(res)
-        
-        
+# st = "xyz" #azy
+# res = ""
+# for ch in st:
+#     chars = ""
+#     if ord(ch) == 122 or ord(ch) == 90:
+#         chars = chr(ord(ch) - 25)
+#     else:
+#         chars = chr(ord(ch) + 1)
+#     res = chars + res
+#     chars = ""
+# print(res)
+
+
+# 
+
+#cecking amstrong number or not
+# num = 153;
+# temp = num;
+# def countNum(val):
+#     para = val
+#     count = 0;
+#     print(para)
+#     while para !=0:
+#         count += 1;
+#         para = para // 10;
+#     return count;
+# def isMul(num, count):
+#     print(num ** count,"ismul")
+#     return num ** count  
+# def result(count,num):
     
+#     sumNum = 0;
+#     for i in range(0,count):
+#         print(num,"number digit")
+#         sumNum += isMul(num % 10,count)
+#         num = num // 10;
+#     return sumNum;
+        
+# count = countNum(num)
+# res = result(count,num)
+# print(res)
+# if res == temp:
+#     print("is amstromstorn number");
+# else:
+#     print("not amstrong number")
+
+
+        
+#    sypnum     
+#     num = 1124;
+
+# def sumOfdigit(num, isAdd):
+#     result = 0 if isAdd else 1   # ✔ Python ternary
+
+#     val = num
+#     while val != 0:
+#         digit = val % 10
+
+#         if isAdd:
+#             result += digit
+#         else:
+#             result *= digit
+
+#         val = val // 10
+
+#     return result
+# sumNum = sumOfdigit(num,True)
+# mulNum = sumOfdigit(num,False)
+# print(sumNum,mulNum)
+
+
+#factorial of number
+# num = 5;
+
+# def fact(num):
+#     if num == 0:
+#         return 1
+#     return num * fact(num - 1)
+# res = fact(num)
+# print(res)
+
+# num = 4;
+# res = 1;
+# for i in range(1,num+1):
+#     res = res * i;
+# print(res)
+
+# prime = 11
+# isPrime = True
+
+# for i in range(2,5):
+#     if prime % i == 0:
+#         isPrime =False
+#         break
+# if isPrime :
+#     print("is a prime number")
+# else:
+#     print("not a primenumber")
