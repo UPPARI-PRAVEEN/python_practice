@@ -1,0 +1,141 @@
+# 🚀 Git & GitHub Interview Preparation
+
+This repository contains my structured learning and practice for **Git, GitHub, and Real-World Development Workflows**. It includes essential concepts, commands, and practical scenarios commonly asked in interviews.
+
+---
+
+## 📌 Topics Covered
+
+### 🔹 Git Basics
+
+* Working Directory, Staging Area, Repository
+* `git add`, `git commit`, `git push`
+* Commit lifecycle and version control
+
+### 🔹 Branching & Merging
+
+* Creating and switching branches
+* `git merge` vs `git rebase`
+* Resolving merge conflicts
+
+### 🔹 Undo Operations
+
+* `git reset --soft`, `--mixed`, `--hard`
+* `git restore`
+* `git stash`
+
+### 🔹 Git Internals
+
+* What is `HEAD`
+* Commit hashes (SHA)
+* How Git tracks changes
+
+---
+
+## 🌐 GitHub Workflow
+
+### 🔹 Pull Request (PR) Flow
+
+1. Create feature branch
+2. Make changes and commit
+3. Push to remote repository
+4. Create Pull Request
+5. Code review process
+6. CI checks (build + test)
+7. Merge to main branch
+
+---
+
+## 🔄 Fork vs Clone
+
+| Feature | Fork                             | Clone                     |
+| ------- | -------------------------------- | ------------------------- |
+| Purpose | Copy repo to your GitHub account | Copy repo to local system |
+| Usage   | Open-source contributions        | Team collaboration        |
+
+---
+
+## ⚙️ CI/CD Overview
+
+### 🔹 CI (Continuous Integration)
+
+* Automatically builds code
+* Runs tests
+* Ensures code quality
+
+### 🔹 CD (Continuous Deployment)
+
+* Deploys code to:
+
+  * Staging
+  * Production
+* Often automated after merge
+
+---
+
+## 🔧 Common Commands
+
+```bash
+# Clone repository
+git clone <repo_url>
+
+# Create branch
+git checkout -b feature-name
+
+# Stage changes
+git add .
+
+# Commit changes
+git commit -m "message"
+
+# Push to remote
+git push origin branch_name
+
+# Pull latest changes
+git pull origin main
+
+# Fetch without merging
+git fetch origin
+
+# Delete local branch
+git branch -d branch_name
+
+# Delete remote branch
+git push origin --delete branch_name
+```
+
+---
+
+## ⚠️ Important Concepts
+
+* **origin** → default remote repository
+* **upstream** → original repo (in fork workflow)
+* **protected branch** → restricted branch (no direct push)
+* **merge conflict** → same code modified in multiple places
+
+---
+
+## 🎯 Goal
+
+To strengthen my understanding of:
+
+* Git commands and internals
+* Real-world team workflows
+* Interview-focused scenarios
+
+---
+
+## 👨‍💻 Author
+
+**Praveen Uppari**
+
+* MERN Stack Developer AND Python Developer
+* Passionate about building scalable applications
+* Focused on cracking product-based company interviews 🚀
+
+---
+
+## ⭐ Note
+
+This repository is part of my **interview preparation journey**.
+Feel free to explore and suggest improvements!
