@@ -169,5 +169,86 @@
 # 👉 This is easy but interviewers expect a clean answer.
 
         
-        
-        
+That’s not what namespaces are — you’re describing **variable naming rules**, not namespaces. Let’s correct this properly (important interview concept).
+
+---
+
+### ❌ What’s wrong
+
+* ❌ Namespaces ≠ variable naming rules
+* ❌ Keywords/special characters → unrelated here
+
+---
+
+### 💡 Strong Interview Answer (Refined)
+
+> A **namespace** in Python is a container that maps names (variables, functions) to their corresponding objects.
+> It helps avoid naming conflicts and organizes code.
+
+---
+
+### 🔹 Types of Namespaces
+
+**1. Local Namespace**
+
+* Inside a function
+* Created when function is called
+* Destroyed after execution
+
+```python
+def func():
+    x = 10   # local namespace
+```
+
+---
+
+**2. Global Namespace**
+
+* Defined at the top level of a script
+* Accessible throughout the program
+
+```python
+x = 20   # global namespace
+```
+
+---
+
+**3. Built-in Namespace**
+
+* Contains predefined names
+* Example: `print()`, `len()`
+
+---
+
+### 🔥 LEGB Rule (very important)
+
+Python searches variables in this order:
+
+> **Local → Enclosing → Global → Built-in**
+
+---
+
+### ⭐ Rating: **3.5/10**
+
+* ❗ Concept misunderstood
+* Needs strong correction
+
+---
+
+### 🔥 Key Interview Line
+
+> “Namespace is a mapping between names and objects.”
+
+---
+
+### 👍 Don’t worry
+
+This is a **common confusion** — now you’ve fixed it 👍
+
+---
+
+### **Question 32 (Very Important – Python Internals)**
+
+**What is the difference between `global` and `nonlocal` keywords?**
+
+👉 This is tricky — answer carefully.
