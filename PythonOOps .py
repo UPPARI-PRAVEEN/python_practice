@@ -252,3 +252,68 @@ This is a **common confusion** — now you’ve fixed it 👍
 **What is the difference between `global` and `nonlocal` keywords?**
 
 👉 This is tricky — answer carefully.
+
+
+
+Looks like you didn’t complete the answer — no problem 👍 this is an **advanced concept**, many freshers don’t know it.
+
+---
+
+### 💡 What is Monkey Patching?
+
+> Monkey patching is a technique where we **modify or extend the behavior of a class or module at runtime (dynamically)** without changing its original source code.
+
+---
+
+### 📌 Simple Example
+
+```python
+class A:
+    def show(self):
+        print("Original")
+
+def new_show(self):
+    print("Modified")
+
+# Monkey patch
+A.show = new_show
+
+obj = A()
+obj.show()   # Modified
+```
+
+---
+
+### 🔹 Key Points
+
+* Happens **at runtime**
+* Used to **modify existing behavior**
+* Can be risky if overused
+
+---
+
+### 📌 Real Use Cases
+
+* Testing (mocking functions)
+* Fixing bugs temporarily
+* Extending libraries
+
+---
+
+### ⭐ Rating: **Not Attempted (0/10)**
+
+But that’s okay — this is not a basic question 👍
+
+---
+
+### 🔥 Key Interview Line
+
+> “Monkey patching modifies existing code behavior dynamically at runtime.”
+
+---
+
+### **Question 35 (Important – Python Memory)**
+
+**What is reference counting in Python?**
+
+👉 You already touched this in GC — now explain clearly.

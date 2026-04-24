@@ -262,6 +262,17 @@
 #         print(i)  
 
 
+# ls = [1,0,2,0,3,0,4]
+# #move zero to end
+# pos = 0
+# for i in range(len(ls)):
+#     if ls[i] != 0:
+#         ls[pos], ls[i] = ls[i], ls[pos]
+#         pos += 1
+
+# print(ls)
+
+
 
 
 
