@@ -74,6 +74,100 @@
 
 # obj = Child()
 # obj.showDetails()
+
+
+
+# Good — saying “I don’t know” honestly is **much better than guessing** 👍
+# Let’s cover it quickly (this is a **high-value interview concept** but easy once you get it).
+
+# ---
+
+# ### 💡 What is `@property`?
+
+# > `@property` is a decorator that allows you to access a method **like an attribute (variable)** instead of calling it like a function.
+
+# ---
+
+# ### 🔥 Why we use it
+
+# * To **encapsulate logic**
+# * To **control access to variables**
+# * To make code look **cleaner (no parentheses)**
+
+# ---
+
+# ### 📌 Normal Method vs Property
+
+# #### ❌ Normal Method
+
+# ```python
+# class Demo:
+#     def get_value(self):
+#         return 10
+
+# obj = Demo()
+# print(obj.get_value())  # need ()
+# ```
+
+# #### ✅ Using `@property`
+
+# ```python
+# class Demo:
+#     @property
+#     def value(self):
+#         return 10
+
+# obj = Demo()
+# print(obj.value)  # no ()
+# ```
+
+# ---
+
+# ### ⚡ Real Use Case (important)
+
+# ```python
+# class Person:
+#     def __init__(self, age):
+#         self._age = age
+
+#     @property
+#     def age(self):
+#         return self._age
+
+#     @age.setter
+#     def age(self, value):
+#         if value < 0:
+#             print("Invalid age")
+#         else:
+#             self._age = value
+# ```
+
+# 👉 Now:
+
+# ```python
+# p = Person(20)
+# print(p.age)   # getter
+# p.age = 25     # setter
+# ```
+
+# ---
+
+# ### ⭐ Interview Summary Line
+
+# > “`@property` allows a method to be accessed like an attribute and is used for encapsulation with getter and setter functionality.”
+
+# ---
+
+# ### ⭐ Rating for this question: **Honest + learning mindset → 👍**
+
+# ---
+
+# ### **Question 12 (Very Important – Data Structures)**
+
+# **What is the difference between a set and a dictionary in Python?**
+
+# 👉 This is easy but interviewers expect a clean answer.
+
         
         
         

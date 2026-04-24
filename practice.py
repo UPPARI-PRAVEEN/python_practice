@@ -143,10 +143,11 @@
 #         sumEle += ls[j]
         
 #         if sumEle == targetSum:
-#             res.append(nested[:])   # copy
+#             res.append(nested[:])   # copy because nested will change in next iteration what happens if we append nested directly 
+                                        # nested will be modified in next iteration and res will have reference to nested so it will change as well
 #             break
 
-# print(res)
+# print(res)#[[1, 3, 2], [2, 4]]
 
 
 
@@ -248,3 +249,19 @@
 #     print("is a prime number")
 # else:
 #     print("not a primenumber")
+
+#print prime numbers in range or 1 to n
+# n = 20;   
+# for i in range(2,n+1):
+#     isPrime = True    
+#     for j in range(2,i//2+1):
+#         if i % j == 0:    
+#             isPrime = False
+#             break 
+#     if isPrime:
+#         print(i)  
+
+
+
+
+
