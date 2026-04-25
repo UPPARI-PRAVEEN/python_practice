@@ -295,7 +295,38 @@
 #         break
 
 
+# arr = [10, 5, 8, 20, 20]
 
+# first = float('-inf')
+# second = float('-inf')
+
+# for num in arr:
+#     if num > first:
+#         second = first
+#         first = num
+#     elif first > num > second:
+#         second = num
+
+# print(second)
+
+# s = "abcabcbb"
+# # Output: True
+
+# def longesSub(string):
+#     logGeststr = "";
+#     for i in range(len(string)):
+#         subStr = ""
+#         for j in range(i,len(string)-1):
+#             if string[j] in subStr:
+#                 break;
+#             else:
+#                 subStr += string[j];
+#         if len(subStr) > len(logGeststr):
+#             logGeststr = subStr
+            
+#     return logGeststr;
+# sorting1 = longesSub(s)
+# print(sorting1)
 
 
 
