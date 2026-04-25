@@ -272,6 +272,30 @@
 
 # print(ls)
 
+# string = "aabbcde"
+# # Output: c fist occurance not repeating character
+# revString = ""
+# for i in range(len(string)-1):
+#     if string[i] not in string[i+1:] and string[i] not in revString:
+#         print(string[i]);
+#         break;
+#     else:
+#         revString += string[i]
+
+# string = "aabbcde"
+
+# freq = {}
+
+# for ch in string:
+#     freq[ch] = freq.get(ch, 0) + 1
+
+# for ch in string:
+#     if freq[ch] == 1:
+#         print(ch)
+#         break
+
+
+
 
 
 
