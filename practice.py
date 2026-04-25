@@ -356,3 +356,16 @@
 # res.append(ls[-1])       
 # print(res)
 
+# nums = [2,7,11,15]
+# target = 9
+
+# mp = {}
+
+# for i in range(len(nums)):
+#     diff = target - nums[i]
+    
+#     if diff in mp:
+#         print([mp[diff], i])
+#         break
+    
+#     mp[nums[i]] = i
