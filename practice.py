@@ -329,5 +329,30 @@
 # print(sorting1)
 
 
+# s = "aaabbcc"
+# # Output: "a3b2c1"
+# res = "";
+# count = 0;
 
+
+# for i in range(len(s)-1):
+#     ch = s[i];
+#     if ch == s[i+1]:
+#         count += 1;
+#         print(ch,count)
+#     else:
+#         res = res + ch + str(count+1)
+        
+#         count = 0
+# res = res + s[-1] + str(count + 1)
+# print(res)
+
+# ls =  [16,17,4,3,5,2]
+# # Output: [17,5,2]
+# res =[];
+# for i in range(len(ls)-1):
+#     if ls[i] < ls[i+1]:
+#         res.append(ls[i+1])
+# res.append(ls[-1])       
+# print(res)
 
