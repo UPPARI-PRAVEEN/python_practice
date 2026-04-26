@@ -490,3 +490,48 @@ for i in range(len(arr)):
        
         
 print(max_sum,start,end)
+
+
+#************************ Logest increasing subsequence without db ******************
+arr = [10,9,2,5,3,7,101,18]
+# Output: 4
+
+def f(index,prev_index,arr,n):
+    if index == n:
+        return 0
+    not_take = 0 + f(index+1,prev_index,arr,n)
+    take = 0;
+    if prev_index == -1 or arr[index] > arr[prev_index]:
+        take = 1 + f(index+1,index,arr,n)
+    return max(take,not_take);
+res = f(0,-1,arr,len(arr)-1)
+print(res)
+
+#***************** Logest increasing subsequence with db ******************
+arr = [3, 1, 2]
+# Output: 4
+def f(index, prev_index, arr, n,dp):
+        if index == n:
+            return 0
+        
+        if dp[index][prev_index+1] != -1:
+            return dp[index][prev_index+1]
+
+        not_take = f(index + 1, prev_index, arr, n,dp)
+        
+        
+        take = 0
+        if prev_index == -1 or arr[index] > arr[prev_index]:
+            take = 1 + f(index + 1, index, arr, n,dp)
+        
+        dp[index][prev_index+1] = max(take, not_take)
+        print(dp)
+        return dp[index][prev_index+1]
+
+
+
+n = len(arr)
+dp = [[-1] * (n + 1) for _ in range(len(arr))]
+print(dp)
+res = f(0, -1, arr, n,dp)
+print(res)
