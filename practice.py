@@ -535,3 +535,29 @@ dp = [[-1] * (n + 1) for _ in range(len(arr))]
 print(dp)
 res = f(0, -1, arr, n,dp)
 print(res)
+
+
+#***************** Coin change 2 ******************
+class Solution(object):
+    def change(self, amount, coins):
+        n = len(coins)
+        dp = [[-1] * (amount + 1) for _ in range(n)]
+        return self.f(n - 1, amount, coins, dp)
+
+    def f(self, index, target, arr, dp):
+        if index == 0:
+            if target % arr[0] == 0:
+                return 1
+            return 0
+
+        if dp[index][target] != -1:
+            return dp[index][target]
+
+        not_take = self.f(index - 1, target, arr, dp)
+
+        take = 0
+        if target >= arr[index]:
+            take = self.f(index, target - arr[index], arr, dp)
+
+        dp[index][target] = take + not_take
+        return dp[index][target]
