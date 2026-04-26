@@ -369,3 +369,124 @@
 #         break
     
 #     mp[nums[i]] = i
+
+# s = "madams"
+# ls = list(s);
+# start = 0;
+# end = len(ls)-1
+# while start < end:
+   
+    
+#     ls[start],ls[end] = ls[end],ls[start]
+        
+#     start+=1;
+#     end-=1;
+# print("".join(ls))
+
+# s = "madam"
+
+# start = 0
+# end = len(s) - 1
+
+# isPalindrome = True
+
+# while start < end:
+#     if s[start] != s[end]:
+#         isPalindrome = False
+#         break
+#     start += 1
+#     end -= 1
+
+# print(isPalindrome)
+
+
+# ls = [1,-2,3,-4,5]
+# # Output: [-2,-4,1,3,5]  (order not important)
+
+# start =0
+# end = len(ls)-2
+
+# while start < end:
+#     if ls[start] > 0:
+#         ls[start],ls[end] = ls[end],ls[start]
+#     start +=1
+#     end -=1
+    
+# print(ls)
+
+#++++++++++++++++++++++++++++++++++++++++++++ + sliding window ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+#**************** find max sum of subarray of size k ****************
+# arr = [2,1,5,1,3,2]
+# k = 3
+
+# # Output: 9   # (5+1+3)
+# window_sum = sum(arr[:k])
+# max_sum = window_sum
+
+# for i in range(k,len(arr)):
+#     window_sum += arr[i]
+#     window_sum -= arr[i-k]
+#     max_sum = max(max_sum,window_sum)
+# print(max_sum)
+
+#********** Revemove duplicates from sorted array **********
+arr = [1, 1, 2, 2, 3, 3]
+
+i = 0  
+
+for j in range(1,len(arr)):
+    if arr[i] != arr[j]:
+        i +=1;
+        arr[i] = arr[j]
+print(arr[:i+1])
+
+#********** Remove duplicates from unsorted array **********
+arr = [3, 1, 2, 1, 3, 2]
+
+i = 0
+while i < len(arr):
+    j = i + 1
+    while j < len(arr):
+        if arr[i] == arr[j]:
+            arr.pop(j)  # remove duplicate
+        else:
+            j += 1
+    i += 1
+
+print(arr)  # [3, 1, 2]
+
+#********** Find the missing number in an array of size n containing numbers from 0 to n **********
+arr = [3, 0, 1]
+
+n = len(arr)
+expected_sum = n * (n + 1) // 2
+
+actual_sum = 0
+for num in arr:
+    actual_sum += num
+
+print(expected_sum - actual_sum)
+
+#************* max sum array ****************
+arr = [-2,1,-3,4,-1,2,1,-5,4]
+# Output: 6
+
+max_sum = float('-inf');
+curr_sum = 0;
+start_val = 0
+start =0;
+end = 0;
+
+for i in range(len(arr)):
+    if curr_sum == 0:
+        start_val = i
+    curr_sum += arr[i]
+    if curr_sum > max_sum:
+        max_sum = curr_sum
+        start = start_val
+        end = i
+    if curr_sum < 0:
+        curr_sum = 0
+       
+        
+print(max_sum,start,end)
