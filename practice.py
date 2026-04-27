@@ -610,3 +610,32 @@ class Solution(object):
             return dp[i]
 
         return fn(0)
+
+#************ longest common subsequence leetcode 1143 ******************
+class Solution(object):
+    def longestCommonSubsequence(self, text1, text2):
+        """
+        :type text1: str
+        :type text2: str
+        :rtype: int
+        """
+        len1 = len(text1)
+        len2 = len(text2)
+        dp = [[-1 for _ in range(len2)] for _ in range(len1)]
+
+        res = self.fn(len1-1,len2-1,text1,text2,dp)
+        return res
+    
+    def fn(self,i,j,s1,s2,dp):
+        if i < 0 or j < 0:
+            return 0
+        if dp[i][j] != -1:
+            return dp[i][j]
+        if s1[i] == s2[j]:
+            dp[i][j] = 1 + self.fn(i-1,j-1,s1,s2,dp)
+        else:
+            dp[i][j] =0 + max(self.fn(i-1,j,s1,s2,dp),self.fn(i,j-1,s1,s2,dp)) 
+        return dp[i][j]
+
+
+        
