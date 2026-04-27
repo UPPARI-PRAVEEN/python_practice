@@ -561,3 +561,28 @@ class Solution(object):
 
         dp[index][target] = take + not_take
         return dp[index][target]
+
+
+#****** 0/1 knap scact with paint walls ******************
+class Solution(object):
+    def paintWalls(self, cost, time):
+        n = len(cost)
+        dp = {}
+
+        def fn(i):
+            if i >= n:
+                return 0
+            
+            if i in dp:
+                return dp[i]
+            
+            # Option 1: take paid painter
+            take = cost[i] + fn(i + time[i] + 1)
+            
+            # Option 2: skip
+            skip = fn(i + 1)
+            
+            dp[i] = min(take, skip)
+            return dp[i]
+
+        return fn(0)
