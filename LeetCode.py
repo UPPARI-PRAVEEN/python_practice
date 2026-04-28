@@ -638,4 +638,60 @@ class Solution(object):
         return dp[i][j]
 
 
+#************* Edit distance leetcode 72 ******************
+class Solution(object):
+    #EG word1 = "horse", word2 = "ros"
+    #OUTPUT: 3 (horse -> rorse (replace 'h' with 'r'), rorse -> rose (remove 'r'), rose -> ros (remove 'e'))
+    def minDistance(self, word1, word2):
+        """
+        :type word1: str
+        :type word2: str
+        :rtype: int
+        """
+        l1 = len(word1)
+        l2 = len(word2)
+        dp = [[-1  for _ in range(l2)] for _ in range(l1)]
+        return self.fn(l1-1,l2-1,word1,word2,dp)
+    def fn(self,i,j,s1,s2,dp):
+        if i<0:
+            return j + 1
+        if j < 0:
+            return i + 1
+        if dp[i][j] != -1:
+            return dp[i][j]
+        
+        if s1[i] == s2[j]:
+            dp[i][j] = 0 + self.fn(i-1,j-1,s1,s2,dp)
+            return dp[i][j]
+        if s1[i] != s2[j]:
+            dp[i][j] = 1 + min(self.fn(i-1,j,s1,s2,dp),self.fn(i,j-1,s1,s2,dp),self.fn(i-1,j-1,s1,s2,dp))
+            return dp[i][j]
+
+
+#***************** Edit distance deletion operation with only insert and delete 583 ******************
+class Solution(object):
+    def minDistance(self, word1, word2):
+        """
+        :type word1: str
+        :type word2: str
+        :rtype: int
+        """
+        dp = [[-1 for _ in range(len(word2))] for _ in range(len(word1))]
+        return self.fn(len(word1)-1,len(word2)-1,word1,word2,dp)
+    def fn(self,i,j,s1,s2,dp):
+        if i < 0:
+            return j + 1
+        if j < 0:
+            return i + 1
+        if dp[i][j] != -1:
+            return dp[i][j]
+        if s1[i] == s2[j]:
+            dp[i][j] = 0 + self.fn(i-1,j-1,s1,s2,dp)
+            return dp[i][j]
+        if s1[i] != s2[j]:
+            dp[i][j] = 1 + min(self.fn(i-1,j,s1,s2,dp),self.fn(i,j-1,s1,s2,dp))
+            return dp[i][j]
+        
+
+
         
