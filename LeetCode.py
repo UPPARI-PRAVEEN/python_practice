@@ -691,6 +691,31 @@ class Solution(object):
         if s1[i] != s2[j]:
             dp[i][j] = 1 + min(self.fn(i-1,j,s1,s2,dp),self.fn(i,j-1,s1,s2,dp))
             return dp[i][j]
+#******************* Make the three string equal ******************
+class Solution(object):
+    def findMinimumOperations(self, s1, s2, s3):
+        res = self.fn(len(s1)-1, len(s2)-1, len(s3)-1, s1, s2, s3)
+        return res if res != float('inf') else -1
+
+    def fn(self, i, j, k, s1, s2, s3):
+        # if s3 is done → delete remaining chars
+        if k < 0:
+            return (i + 1) + (j + 1)
+
+        # if any string finished but s3 still left → impossible
+        if i < 0 or j < 0:
+            return float('inf')
+
+        # if all match
+        if s1[i] == s2[j] == s3[k]:
+            return self.fn(i-1, j-1, k-1, s1, s2, s3)
+
+        # otherwise delete from s1 or s2
+        return 1 + min(
+            self.fn(i-1, j, k, s1, s2, s3),
+            self.fn(i, j-1, k, s1, s2, s3)
+        )
+
         
 
 
