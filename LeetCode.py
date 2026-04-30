@@ -750,6 +750,37 @@ class Solution(object):
             self.fn(i, j-1, k, s1, s2, s3)
         )
 
+#***************** Minimum path sum 64 ******************
+#input: grid = [[1,3,1],[1,5,1],[4,2,1]]
+#output: 7 (1 → 3 → 1 → 1 → 1)
+
+class Solution(object):
+    def minPathSum(self, grid):
+        # Rows: len(grid), Cols: len(grid[0])
+        dp = [[-1 for _ in range(len(grid[0]))] for _ in range(len(grid))]
+        return self.fn(0, 0, grid, dp)
+
+    def fn(self, i, j, grid, dp):
+        # Out of bounds check
+        if i >= len(grid) or j >= len(grid[0]):
+            return float('inf')
+        
+        # Memoization check
+        if dp[i][j] != -1:
+            return dp[i][j]
+        
+        # Base case: Reached the bottom-right cell
+        # Fixed the j check here:
+        if i == len(grid) - 1 and j == len(grid[0]) - 1:
+            return grid[i][j]
+
+        # Recursive steps
+        move_nx_col = grid[i][j] + self.fn(i, j + 1, grid, dp)
+        move_next_row = grid[i][j] + self.fn(i + 1, j, grid, dp)
+        
+        dp[i][j] = min(move_nx_col, move_next_row)
+        return dp[i][j]
+
         
 
 
