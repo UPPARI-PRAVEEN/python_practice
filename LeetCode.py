@@ -804,6 +804,47 @@ class Solution(object):
                     break
 
         return dp[-1]
+
+###***************** Partition equal subset sum 416 ******************
+#input: nums = [1,5,11,5]
+#output: true (the array can be partitioned as [1, 5, 5] and [11])
+
+class Solution(object):
+    def canPartition(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: bool
+        """
+        l = len(nums)-1
+        
+        t_sum = sum(nums)
+        if t_sum % 2 != 0:
+            return False
+        target = t_sum // 2
+        
+        # target + 1 because we need to include the index for 'target' itself
+        dp = [[-1 for _ in range(target + 1)] for _ in range(len(nums))]
+        return self.fn(l,target,nums,dp)
+
+
+    
+    def fn(self,i,target,arr,dp):
+
+        if target == 0:
+            return True
+        if i == 0:
+            return target == arr[i]
+        if dp[i][target] != -1:
+            return dp[i][target]
+        not_take = self.fn(i-1,target,arr,dp)
+        take = False
+        if arr[i] < target:
+            
+            take = self.fn(i-1,target-arr[i],arr,dp)
+        dp[i][target] = take or not_take
+        return dp[i][target]
+
+        
     
         
 
