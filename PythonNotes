@@ -8,6 +8,14 @@ A dynamically typed language is one where you don’t need to declare the data t
 
 shallow vs deep copy in python?
 A dynamically typed language is one where you don’t need to declare the data type of a variable explicitly. The type is determined automatically at runtime based on the value assigned. This makes coding faster and more flexible, but it can also lead to more runtime errors if types are misused.
+eg: 
+import copy
+original_list = [1, 2, [3, 4]]
+shallow_copied_list = copy.copy(original_list)
+deep_copied_list = copy.deepcopy(original_list)
+shallow_copied_list[2][0] = 'X'
+print(original_list)  # Output: [1, 2, ['X', 4]]
+print(deep_copied_list)  # Output: [1, 2, [3, 4]]
 
 funcitona and *args, **kwargs in python?
 “Functions in Python are blocks of code used to perform a specific task. They help in code reusability and make the program more modular and organized. We define a function using the def keyword.
@@ -77,6 +85,8 @@ print(next(d))  # middle → 2
 
 what is the difference between iterable and iterator in python?
 An iterable is any object that can be looped over, like a list, tuple, or string. It implements the __iter__() method.
+eg : my_list = [1, 2, 3]
+print(iter(my_list))  # returns an iterator object
 
 An iterator is an object that actually performs the iteration. It keeps track of the current position and implements both __iter__() and __next__() methods to return elements one by one.”
 
