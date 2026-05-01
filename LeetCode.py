@@ -888,6 +888,40 @@ class Solution(object):
                     
                     queue.append((nrow, ncol))
                     visited.add((nrow, ncol))
+#*** Kahn's algorithm for topological sort ******************
+from collections import deque
+
+def topoSort(n, edges):
+    adj = {i: [] for i in range(n)}
+    indegree = [0] * n
+    
+    # build graph
+    for u, v in edges:
+        adj[u].append(v)
+        indegree[v] += 1
+    
+    # queue of 0 indegree nodes
+    queue = deque()
+    for i in range(n):
+        if indegree[i] == 0:
+            queue.append(i)
+    
+    topo = []
+    
+    while queue:
+        node = queue.popleft()
+        topo.append(node)
+        
+        for nei in adj[node]:
+            indegree[nei] -= 1
+            if indegree[nei] == 0:
+                queue.append(nei)
+    
+    # cycle check
+    if len(topo) != n:
+        return []  # cycle exists
+    
+    return topo
 
         
     
