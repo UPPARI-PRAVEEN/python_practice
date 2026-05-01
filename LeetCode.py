@@ -844,6 +844,51 @@ class Solution(object):
         dp[i][target] = take or not_take
         return dp[i][target]
 
+##***************** Number of islands 200 ******************
+#problem: Given a 2D grid map of '1's (land) and '0's (water), count the number of islands. 
+#An island is surrounded by water and is formed by connecting adjacent lands horizontally or 
+#vertically. You may assume all four edges of the grid are all surrounded by water.
+
+#input: grid = [["1","1","0","0","0"],["1","1","0","0","0"],["0","0","1","0","0"],["0","0","0","1","1"]]
+#output: 3 (there are three islands: one consisting of the first four '1's, one consisting of the single '1' in the middle, and one consisting of the last two '1's)
+class Solution(object):
+    def numIslands(self, grid):
+        if not grid:
+            return 0
+        
+        rowLen = len(grid)
+        colLen = len(grid[0])
+        visited = set()
+        
+        count = 0
+        
+        for row in range(rowLen):
+            for col in range(colLen):
+                if grid[row][col] == "1" and (row, col) not in visited:
+                    count += 1
+                    self.bfs(row, col, visited, grid, rowLen, colLen)
+        
+        return count
+
+    def bfs(self, row, col, visited, grid, rowLen, colLen):
+        queue = [(row, col)]
+        visited.add((row, col))
+        
+        directions = [(1,0), (-1,0), (0,1), (0,-1)]
+        
+        while queue:
+            r, c = queue.pop(0)
+            
+            for dr, dc in directions:
+                nrow = r + dr
+                ncol = c + dc
+                
+                if (0 <= nrow < rowLen and 0 <= ncol < colLen and
+                    grid[nrow][ncol] == "1" and (nrow, ncol) not in visited):
+                    
+                    queue.append((nrow, ncol))
+                    visited.add((nrow, ncol))
+
         
     
         
