@@ -889,6 +889,10 @@ class Solution(object):
                     queue.append((nrow, ncol))
                     visited.add((nrow, ncol))
 #*** Kahn's algorithm for topological sort ******************
+#algarithm
+first we calculate indegree of each node and build the adjacency list
+then we add all nodes with indegree 0 to the queue
+then we pop from queue and add to topo sort result and decrease indegree of its neighbors by 1 and if any neighbor's indegree becomes 0 we add it to queue
 from collections import deque
 
 def topoSort(n, edges):
@@ -922,6 +926,221 @@ def topoSort(n, edges):
         return []  # cycle exists
     
     return topo
+
+#******** Flood fill 733 ******************
+#input: image = [[1,1,1],[1,1,0],[1,0,1]], sr = 1, sc = 1, color = 2
+#output: [[2,2,2],[2,2,0],[2,0,1]] (starting from the pixel at (sr, sc), which is 1, all connected pixels with the same color 1 are changed to color 2)
+
+class Solution(object):
+    def floodFill(self, image, sr, sc, color):
+        """
+        :type image: List[List[int]]
+        :type sr: int
+        :type sc: int
+        :type color: int
+        :rtype: List[List[int]]
+        """
+        rLen = len(image)
+        cLen = len(image[0])
+        visited =set()
+        original_C = image[sr][sc]
+        if original_C == color:
+            return image
+        return self.dfs(sr,sc,image,visited,rLen,cLen,color,original_C )
+
+    def dfs(self,sr,sc,image,visited,rLen,cLen,color,original_C ):
+        visited.add((sr,sc))
+        directions = [(1,0),(-1,0),(0,1),(0,-1)]
+        que = [(sr,sc)]
+        image[sr][sc] = color
+
+        while que:
+            r,c = que.pop(0)
+            for row,col in directions:
+                dR = row + r
+                dc = c + col
+                if 0 <= dR < rLen and 0 <= dc < cLen and image[dR][dc] == original_C:
+                    image[dR][dc] = color 
+                    que.append([dR,dc])
+        return image
+
+
+#************* rotten oranges 994 ******************
+#input: grid = [[2,1,1],[1,1,0],[0,1,1]]
+#output: 4 (Minute 0: [[2,1,1],[1,1,0],[0,1,1]] (initial state)
+#Minute 1: [[2,2,1],[2,1,0],[0,1,1]] (the rotten orange at (0, 0) rots the adjacent fresh orange at (0, 1))
+#Minute 2: [[2,2,2],[2,2,0],[0,1,1]] (the rotten oranges at (0, 0) and (0, 1) rot the adjacent fresh orange at (0, 2) and (1, 0))
+#Minute 3: [[2,2,2],[2,2,0],[0,2,1]] (the rotten oranges at (0, 0), (0, 1), and (0, 2) rot the adjacent fresh orange at (1, 1))
+#Minute 4: [[2,2,2],[2,2,0],[0,2,2]] (the rotten orange at (1, 1) rots the adjacent fresh orange at (2, 1))
+
+
+from collections import deque
+
+class Solution(object):
+    def orangesRotting(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        rLen = len(grid)
+        cLen = len(grid[0])
+        que = deque()
+        fresh = 0
+        
+       
+
+        for row in range(rLen):
+            for col in range(cLen):
+                if grid[row][col] == 2:
+                    que.append((row,col))
+                elif grid[row][col] == 1:
+                    fresh +=1
+                
+
+        if fresh == 0:
+            return 0
+        
+        minutes = 0
+        
+        directions = [(1,0),(-1,0),(0,1),(0,-1)]
+
+        while que:
+            size = len(que)
+            for _ in range(size):
+                r,c = que.popleft()
+            
+                for rcol,ccol in directions:
+                    rd = rcol + r
+                    cd = c + ccol
+                    if 0 <= rd < rLen and 0 <= cd < cLen and grid[rd][cd] == 1:
+                        grid[rd][cd] = 2
+                        que.append((rd,cd))
+                        fresh -=1
+            minutes +=1
+        
+        return minutes - 1 if fresh == 0 else -1
+#**** Surrounded regions 130 ******************
+#input: grid = [["X","X","X","X"],["X","O","O","X"],["X","X","O","X"],["X","O","X","X"]]
+#output: [["X","X","X","X"],["X","X","X","  X"],["X","X","X","X"],["X","O","X","X"]] (the 'O's in the middle are surrounded by 'X's and are flipped to 'X', while the 'O' at the bottom is not surrounded and remains unchanged)
+
+class Solution(object):
+    def solve(self, grid):
+        if not grid:
+            return 0
+        
+        rowLen = len(grid)
+        colLen = len(grid[0])
+        
+        
+        
+        
+        for i in range(rowLen):
+            if grid[i][0] == "O":
+                self.bfs(i,0,grid,rowLen, colLen)
+            if grid[i][colLen-1] == "O":
+                self.bfs(i,colLen-1,grid,rowLen, colLen)
+        for j in range(colLen):
+            if grid[0][j] == "O":
+                self.bfs(0,j,grid,rowLen, colLen)
+            if grid[rowLen-1][j] == "O":
+                self.bfs(rowLen-1,j,grid,rowLen, colLen)
+        for i in range(rowLen):
+            for j in range(colLen):
+                if grid[i][j] == 'S':
+                    grid[i][j] = 'O'
+                elif grid[i][j] == 'O':
+                    grid[i][j] = 'X'
+
+
+        
+        return grid
+
+    def bfs(self, row, col, grid,rowLen, colLen):
+        queue = [(row, col)]
+        grid[row][col] = "S"
+        
+        directions = [(1,0), (-1,0), (0,1), (0,-1)]
+        
+        while queue:
+            r, c = queue.pop(0)
+            
+            for dr, dc in directions:
+                nrow = r + dr
+                ncol = c + dc
+                
+                if 0 <= nrow < rowLen and 0 <= ncol < colLen and grid[nrow][ncol] == "O":
+                    
+                    grid[nrow][ncol] = "S"
+                    queue.append((nrow, ncol))
+#***************** Rotten oranges 994 ******************
+#input: grid = [[2,1,1],[1,1,0],[0,1,1]]
+#output: 4 (Minute 0: [[2,1,1],[1,1,0],[0,1,1]] (initial state)
+#Minute 1: [[2,2,1],[2,1,0],[0,1,1]] (the rotten orange at (0, 0) rots the adjacent fresh orange at (0, 1))
+#Minute 2: [[2,2,2],[2,2,0],[0  ,1,1]] (the rotten oranges at (0, 0) and (0, 1) rot the adjacent fresh orange at (0, 2) and (1, 0))
+#Minute 3: [[2,2,2],[2,2,0],[0  ,2,1]] (the rotten oranges at (0, 0), (0, 1), and (0, 2) rot the adjacent fresh orange at (1, 1))
+#Minute 4: [[2,2,2],[2,2,0],[0  ,2,2]] (the rotten orange at (1, 1) rots the adjacent fresh orange at (2, 1))
+from collections import deque
+
+class Solution(object):
+    def orangesRotting(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        rLen = len(grid)
+        cLen = len(grid[0])
+        que = deque()
+        fresh = 0
+        
+       
+
+        for row in range(rLen):
+            for col in range(cLen):
+                if grid[row][col] == 2:
+                    que.append((row,col))
+                elif grid[row][col] == 1:
+                    fresh +=1
+                
+
+        if fresh == 0:
+            return 0
+        
+        minutes = 0
+        
+        directions = [(1,0),(-1,0),(0,1),(0,-1)]
+
+        while que:
+            size = len(que)
+            for _ in range(size):
+                r,c = que.popleft()
+            
+                for rcol,ccol in directions:
+                    rd = rcol + r
+                    cd = c + ccol
+                    if 0 <= rd < rLen and 0 <= cd < cLen and grid[rd][cd] == 1:
+                        grid[rd][cd] = 2
+                        que.append((rd,cd))
+                        fresh -=1
+            minutes +=1
+        
+        return minutes - 1 if fresh == 0 else -1
+
+        
+
+
+        
+                    
+        
+
+        
+
+
+        
+
+
+
+        
+
 
         
     
