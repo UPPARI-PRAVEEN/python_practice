@@ -1126,7 +1126,83 @@ class Solution(object):
         return minutes - 1 if fresh == 0 else -1
 
         
+#** sliding window sub array sum equal to k 560 ******************
+#input: nums = [1,1,1], k = 2
+#output: 2 (the subarrays [1,1] at indices (0,1) and (1,2) sum to 2)
+arr = [5, 2, 3, 4]
+target = 7
 
+def find_subarrays(nums, k):
+    curr_sum = 0
+    start = 0
+    results = []
+    
+    for end in range(len(nums)):
+        curr_sum += nums[end]
+        
+        # Shrink the window if the sum is too large
+        while curr_sum > k and start <= end:
+            curr_sum -= nums[start]
+            start += 1
+            
+        # Check if we hit the target
+        if curr_sum == k:
+            results.append(nums[start:end+1])
+            
+    return results
+
+print(find_subarrays(arr, target))
+
+#********* Remove adjacent duplicates 1047 ******************
+#input: s = "abbaca"
+#output: "ca" (the first 'b' and the second 'b' are adjacent and can be removed, leaving "aaca". 
+#Then, the first 'a' and the second 'a' are adjacent and can be removed, leaving "ca")
+class Solution(object):
+    def removeDuplicates(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        stack = []
+        for ch in s:
+            if stack and stack[-1] == ch:
+                stack.pop()
+            else:
+                stack.append(ch)
+                
+
+            
+           
+        return "".join(stack)
+
+#********* Contiguous Array 525 ******************
+#input: nums = [0,1,0]
+#output: 2 (the longest contiguous subarray with equal number of 0 and 1 is [0,1] or [1,0], both of which have length 2)
+
+class Solution(object):
+    def findMaxLength(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        for i in range(len(nums)):
+            if nums[i] == 0:
+                nums[i] = -1
+        hp = {0: -1}
+        sum_ele = 0
+        max_len =float('-inf')
+        for i in range(len(nums)):
+            sum_ele += nums[i]
+            if sum_ele in hp:
+                max_len = max(max_len,i-hp[sum_ele])
+            
+            else:
+                hp[sum_ele] = i
+        return max_len
+
+    
+        
+        
 
         
                     
