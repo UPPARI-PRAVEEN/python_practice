@@ -57,13 +57,24 @@ for i in range(len(ls)-1):
         for j in range(ls[i]+1,ls[i+1]):
              print(j)
 
-
+#*** find first non repeating character in string
 st = "programming"
 #firt occurence of non repeating character
-for i in range(len(st)):
-    if st[i] not in st[i+1:]:
+res = ""
+for i in range(len(st)-1):
+    if st[i] not in st[i+1:] and st[i] not in res:
         print(st[i])
-        break
+        break;
+    else:
+        res += st[i]
+# or we can use dictionary to count frequency of each character and then find first character with frequency 1
+dic = {}
+for ch in st:
+    dic[ch] = dic.get(ch,0) + 1
+for ch in st:
+    if dic[ch] == 1:
+        print(ch)
+        break;
 
 exception handling
 try:
@@ -123,6 +134,8 @@ reverse(ls,k,len(ls)-1)
 
 print(ls)
 
+
+#**** max sum of subarray
 ls =  [-2,1,-3,4,-1,2,1,-5,4]
 
 max_sum = float('-inf')
@@ -158,6 +171,7 @@ res = word + " " + res
 
 print(res)
 
+#**** find all subarray with given sum
 
 ls = [1,3,2,4]
 targetSum = 6
@@ -176,6 +190,20 @@ for i in range(len(ls)):
                                         nested will be modified in next iteration and res will have reference to nested so it will change as well
             break
 
+print(res)#[[1, 3, 2], [2, 4]]
+#optimized approach using hashmap prefix sum
+hp = {}
+curr_sum = 0
+for i in range(len(ls)):    
+    curr_sum += ls[i]
+    
+    if curr_sum == targetSum:
+        res.append(ls[:i+1])
+    
+    if (curr_sum - targetSum) in hp:
+        res.append(ls[hp[curr_sum - targetSum] + 1 : i + 1])
+    
+    hp[curr_sum] = i
 print(res)#[[1, 3, 2], [2, 4]]
 
 
@@ -226,9 +254,8 @@ else:
     print("not amstrong number")
 
 
-        
-   sypnum     
-    num = 1124;
+# ********* sypnum     
+    num = 1124
 
 def sumOfdigit(num, isAdd):
     result = 0 if isAdd else 1   # ✔ Python ternary
@@ -250,7 +277,7 @@ mulNum = sumOfdigit(num,False)
 print(sumNum,mulNum)
 
 
-factorial of number
+#  factorial of number
 num = 5;
 
 def fact(num):
@@ -1281,7 +1308,8 @@ class Solution(object):
         return res
 #********* Validate Stack Sequences 946 ******************
 #input: pushed = [1,2,3,4,5], popped = [4,5,3,2,1]
-#output: true (we can simulate the push and pop operations as follows:
+#output: true (we can simulate the push and pop operations as follows:+
+
 class Solution(object):
     def validateStackSequences(self, pushed, popped):
         """
