@@ -1200,6 +1200,116 @@ class Solution(object):
                 hp[sum_ele] = i
         return max_len
 
+
+#**** Product of Array Except Self 238 ******************
+#input: nums = [1,2,3,4]
+#output: [24,12,8,6] (the product of all the elements except the current one for each index is [2*3*4, 1*3*4, 1*2*4, 1*2*3])
+
+class Solution(object):
+    def productExceptSelf(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        prefix = []
+        sufix = []
+        
+        curr_p = 1
+        suf_p =1
+        for i in range(len(nums)):
+            prefix.append(curr_p)
+            curr_p *= nums[i]
+            
+        for j in range(len(nums)-1,-1,-1):
+            sufix.insert(0,suf_p)
+            suf_p *= nums[j]
+        for i in range(len(nums)):
+            nums[i] = prefix[i] * sufix[i]
+            
+            
+        return nums
+#********* Maximum Product Subarray 152 ******************
+#input: nums = [2,3,-2,4]
+#output: 6 (the contiguous subarray [2,3] has the largest product 6)
+class Solution(object):
+    def maxProduct(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+       
+        
+        max_product = float('-inf')
+        pre =1
+        sufix = 1
+
+        for right in range(len(nums)):
+            pre *= nums[right]
+            sufix =sufix * nums[len(nums)-right-1] 
+            max_product = max(max_product,pre,sufix)
+            if pre ==0:
+                pre =1
+            if sufix == 0:
+                sufix = 1
+            
+            
+            
+        return max_product 
+#**** Sort Characters By Frequency 451 ******************
+#input: s = "tree"
+#output: "eert" (the characters 'e' appear twice and are sorted before 'r' and 't', which appear once each)
+class Solution(object):
+    def frequencySort(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        hp = {}
+        res = ""
+        for i,val in enumerate(s):
+            if val in hp:
+                hp[val] += 1
+            else:
+                hp[val] = 1
+        hp = sorted(hp.items(), key=lambda x: x[1], reverse=True)
+        
+        for i in range(len(hp)):
+            char = hp[i][0]
+            freq = int(hp[i][1])
+            for j in range(freq):
+                res += char
+        return res
+#********* Validate Stack Sequences 946 ******************
+#input: pushed = [1,2,3,4,5], popped = [4,5,3,2,1]
+#output: true (we can simulate the push and pop operations as follows:
+class Solution(object):
+    def validateStackSequences(self, pushed, popped):
+        """
+        :type pushed: List[int]
+        :type popped: List[int]
+        :rtype: bool
+        """
+        stack = []
+        j =0
+        for i in range(len(pushed)):
+            stack.append(pushed[i])
+            while stack and stack[-1] == popped[j]:
+                stack.pop()
+                j += 1
+        if stack == []:
+            return True
+        else:
+            return False
+        
+
+        
+
+        
+            
+        
+        
+
+        
     
         
         
