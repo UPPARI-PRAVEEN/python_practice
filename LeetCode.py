@@ -602,6 +602,46 @@ print(dp)
 res = f(0, -1, arr, n,dp)
 print(res)
 
+#***************** Merge sort ******************
+#input: nums = [5,2,3,1]
+#output: [1,2,3,5] (the array is sorted in ascending order using the merge sort algorithm)
+class Solution(object):
+    def sortArray(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        
+        def mergeSort(arr):
+            if len(arr) <= 1:
+                return arr
+            mid = len(arr) // 2
+            left = mergeSort(arr[:mid])
+            right = mergeSort(arr[mid:])
+            return merge(left,right)
+        def merge(left,right):
+            i = j = 0
+            res = []
+            while i < len(left) and j < len(right):
+                if left[i] < right[j]:
+                    res.append(left[i])
+                    i+=1
+                else:
+                    res.append(right[j])
+                    j +=1
+            res.extend(left[i:])
+            res.extend(right[j:])
+            return res
+        return mergeSort(nums)
+
+            
+
+
+
+
+
+        
+
 
 #***************** Coin change 2 ******************
 class Solution(object):
