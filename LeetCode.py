@@ -278,7 +278,7 @@ print(sumNum,mulNum)
 
 
 #  factorial of number
-num = 5;
+num = 5
 
 def fact(num):
     if num == 0:
@@ -286,7 +286,7 @@ def fact(num):
     return num * fact(num - 1)
 res = fact(num)
 print(res)
-
+ # or we can do it iteratively
 num = 4;
 res = 1;
 for i in range(1,num+1):
@@ -363,7 +363,7 @@ for num in arr:
         second = num
 
 print(second)
-
+#***** longest substring without repeating characters
 s = "abcabcbb"
 # Output: "abc"
 
@@ -384,6 +384,7 @@ sorting1 = longesSub(s)
 print(sorting1)
 
 
+#**** count of each character in string 
 s = "aaabbcc"
 # Output: "a3b2c1"
 res = "";
@@ -402,14 +403,24 @@ for i in range(len(s)-1):
 res = res + s[-1] + str(count + 1)
 print(res)
 
-ls =  [16,17,4,3,5,2]
-# Output: [17,5,2]
-res =[];
-for i in range(len(ls)-1):
-    if ls[i] < ls[i+1]:
-        res.append(ls[i+1])
-res.append(ls[-1])       
-print(res)
+
+#**** find all elements which are greater than next element in list
+ls = [16, 17, 4, 3, 5, 2]
+res = []
+
+# The rightmost element is always a leader
+current_max = ls[-1]
+res.append(current_max)
+
+# Start from the second to last element and move backwards
+for i in range(len(ls) - 2, -1, -1):
+    if ls[i] > current_max:
+        current_max = ls[i]
+        res.append(current_max)
+
+# Since we collected them backwards, reverse to match original order
+res.reverse()
+print(res)  # Output: [17, 5, 2]
 
 nums = [2,7,11,15]
 target = 9
@@ -470,7 +481,7 @@ while start < end:
 print(ls)
 
 ++++++++++++++++++++++++++++++++++++++++++++ + sliding window ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-**************** find max sum of subarray of size k ****************
+**************** find max sum of subarray of size k  ****************
 arr = [2,1,5,1,3,2]
 k = 3
 
@@ -486,7 +497,7 @@ print(max_sum)
 
 #********** Revemove duplicates from sorted array **********
 arr = [1, 1, 2, 2, 3, 3]
-
+# ourput: [1, 2, 3] (the first three elements of the array are now 1, 2, and 3, and the rest of the elements can be ignored)
 i = 0  
 
 for j in range(1,len(arr)):
@@ -549,7 +560,7 @@ print(max_sum,start,end)
 
 #************************ Logest increasing subsequence without db ******************
 arr = [10,9,2,5,3,7,101,18]
-# Output: 4
+# Output: 4 because the longest increasing subsequence is [2,3,7,101] and its length is 4.
 
 def f(index,prev_index,arr,n):
     if index == n:
