@@ -1,0 +1,317 @@
+Ahh now it’s clear—you’re asking for **named algorithms (like Kahn’s Algorithm, Topological Sort, Dijkstra, etc.) with their logic notes**. Good, this is the level where real problem-solving improves.
+
+I’ll give you **clean “named algorithm notes”** you can directly revise 👇
+
+---
+
+# 📘 IMPORTANT NAMED ALGORITHMS (WITH LOGIC)
+
+---
+
+# 🔹 1. TOPOLOGICAL SORT (DFS)
+
+### 🧠 Use When
+
+* Directed graph
+* Dependencies (course schedule type)
+
+### 💡 Core Idea
+
+👉 Nodes with no outgoing dependency come last
+👉 Use DFS and stack
+
+### ⚙️ Algorithm
+
+```id="p9k4gh"
+1. Build adjacency list
+2. visited = set()
+3. stack = []
+
+4. run DFS:
+      for neighbor:
+          if not visited:
+              dfs(neighbor)
+
+      push node to stack
+
+5. reverse stack → answer
+```
+
+### ⚠️ Detect Cycle
+
+* use `path/recursion stack`
+* if revisited in same path → cycle
+
+---
+
+# 🔹 2. KAHN’S ALGORITHM (BFS TOPO SORT)
+
+### 🧠 Use When
+
+* Topological sort using BFS
+* Need cycle detection
+
+### 💡 Core Idea
+
+👉 Nodes with **indegree = 0** can be processed first
+
+### ⚙️ Algorithm
+
+```id="g7s1s9"
+1. Build adjacency list
+2. Compute indegree of each node
+
+3. queue = nodes with indegree 0
+
+4. while queue:
+      node = pop
+      add to result
+
+      for neighbor:
+          indegree[neighbor]--
+          if indegree becomes 0:
+              push to queue
+
+5. if result size != n → cycle exists
+```
+
+---
+
+# 🔹 3. DIJKSTRA’S ALGORITHM
+
+### 🧠 Use When
+
+* Shortest path
+* Weighted graph (no negative weights)
+
+### 💡 Core Idea
+
+👉 Always expand shortest distance node first
+
+### ⚙️ Algorithm
+
+```id="d5k1s2"
+1. dist = [inf]
+2. dist[src] = 0
+
+3. minHeap = [(0, src)]
+
+4. while heap:
+      (d, node) = pop
+
+      for neighbor:
+          if d + weight < dist[neighbor]:
+                update dist
+                push to heap
+```
+
+### ⚠️ Notes
+
+* Use min heap
+* Works only for non-negative weights
+
+---
+
+# 🔹 4. BELLMAN-FORD
+
+### 🧠 Use When
+
+* Graph has negative weights
+
+### 💡 Core Idea
+
+👉 Relax edges N-1 times
+
+### ⚙️ Algorithm
+
+```id="i2l0vd"
+1. dist[src] = 0
+
+2. repeat n-1 times:
+      for each edge (u, v):
+          if dist[u] + w < dist[v]:
+                update
+
+3. extra iteration:
+      if still updating → negative cycle
+```
+
+---
+
+# 🔹 5. FLOYD WARSHALL
+
+### 🧠 Use When
+
+* All pairs shortest path
+
+### 💡 Core Idea
+
+👉 Try every node as intermediate
+
+### ⚙️ Algorithm
+
+```id="a9w2lx"
+for k in nodes:
+    for i in nodes:
+        for j in nodes:
+            dist[i][j] = min(
+                dist[i][j],
+                dist[i][k] + dist[k][j]
+            )
+```
+
+---
+
+# 🔹 6. UNION FIND (DISJOINT SET)
+
+### 🧠 Use When
+
+* Connected components
+* Cycle detection (undirected graph)
+
+### 💡 Core Idea
+
+👉 Group nodes into sets
+
+### ⚙️ Algorithm
+
+```id="s3k8fj"
+find(x):
+    if parent[x] != x:
+        parent[x] = find(parent[x])
+    return parent[x]
+
+union(x, y):
+    px = find(x)
+    py = find(y)
+    if px != py:
+        parent[py] = px
+```
+
+---
+
+# 🔹 7. KRUSKAL’S ALGORITHM
+
+### 🧠 Use When
+
+* Minimum Spanning Tree (MST)
+
+### 💡 Core Idea
+
+👉 Pick smallest edge without forming cycle
+
+### ⚙️ Algorithm
+
+```id="ljz9vk"
+1. sort edges by weight
+
+2. for edge (u, v):
+      if find(u) != find(v):
+            union(u, v)
+            include edge
+```
+
+---
+
+# 🔹 8. PRIM’S ALGORITHM
+
+### 🧠 Use When
+
+* MST (alternative to Kruskal)
+
+### 💡 Core Idea
+
+👉 Expand tree using minimum edge
+
+### ⚙️ Algorithm
+
+```id="e9g2wq"
+1. start from any node
+2. push edges into min heap
+
+3. while heap:
+      pick smallest edge
+      if node not visited:
+            add to MST
+            push its edges
+```
+
+---
+
+# 🔹 9. TARJAN’S ALGORITHM
+
+### 🧠 Use When
+
+* Bridges / articulation points
+
+### 💡 Core Idea
+
+👉 Track discovery time + lowest reachable
+
+### ⚙️ Idea (simplified)
+
+* maintain:
+
+  * `tin[]` (time of entry)
+  * `low[]` (lowest reachable)
+
+👉 if `low[child] > tin[node]` → bridge
+
+---
+
+# 🔹 10. KMP (STRING MATCHING)
+
+### 🧠 Use When
+
+* Pattern matching
+
+### 💡 Core Idea
+
+👉 Avoid re-checking characters
+
+### ⚙️ Algorithm
+
+```id="m6y1tk"
+1. build LPS array
+2. match using LPS jumps
+```
+
+---
+
+# 🔥 MOST IMPORTANT FOR YOU (based on your level)
+
+Focus first on:
+
+👉 Kahn’s Algorithm
+👉 Topological Sort (DFS)
+👉 Dijkstra
+👉 Union Find
+👉 Kruskal
+
+---
+
+# 🧠 HOW TO REMEMBER (VERY IMPORTANT)
+
+Don’t just memorize names.
+
+Link them like this:
+
+```id="k2g6cz"
+Dependency graph → Topo Sort / Kahn
+Shortest path → Dijkstra / BFS
+Cycle detection → Union Find / DFS
+MST → Kruskal / Prim
+All pairs → Floyd Warshall
+```
+
+---
+
+# 🚀 If you want next level
+
+I can:
+
+* Give **LeetCode problems for each algorithm**
+* Make **revision sheet (1 page)**
+* Or test you with **“which algorithm to use?” questions**
+
+Just tell me 👍

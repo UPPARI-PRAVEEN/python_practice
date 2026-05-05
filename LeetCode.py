@@ -667,6 +667,8 @@ class Solution(object):
 
 
 #***************** Coin change 2 ******************
+#input: amount = 4, coins = [1, 2, 3]
+#output: 4 (there are four ways to make up the amount: 1) 1+1+1+1, 2) 1+1+2, 3) 1+3, 4) 2+2)
 class Solution(object):
     def change(self, amount, coins):
         n = len(coins)
@@ -754,6 +756,9 @@ class Solution(object):
         """
         #input: text1 = "abcde", text2 = "ace"
         #output: 3 (longest common subsequence is "ace" and its length is 3.)
+        #because "ace" is a subsequence of "abcde" and "ace", and its length is 3.
+        #invalid input: text1 = "abc", text2 = "def"
+        #output: 0 (there is no common subsequence between "abc" and "def", so the length of the longest common subsequence is 0.)
         len1 = len(text1)
         len2 = len(text2)
         dp = [[-1 for _ in range(len2)] for _ in range(len1)]
@@ -1279,6 +1284,11 @@ class Solution(object):
 #********* Contiguous Array 525 ******************
 #input: nums = [0,1,0]
 #output: 2 (the longest contiguous subarray with equal number of 0 and 1 is [0,1] or [1,0], both of which have length 2)
+#input 2: nums = [0,1,0,1,1,1]
+#output 2: 4 (the longest contiguous subarray with equal number of 0 and 1 is [0,1,0,1], which has length 4)
+#because we can treat 0 as -1, then the problem reduces to finding the longest subarray with sum 0. We can use a hash map to store 
+#the cumulative sum and its earliest index. Whenever we encounter the same cumulative sum again, it means the subarray between 
+#those two indices has a sum of 0, and we can update our maximum length accordingly.
 
 class Solution(object):
     def findMaxLength(self, nums):
@@ -1312,8 +1322,8 @@ class Solution(object):
         :type nums: List[int]
         :rtype: List[int]
         """
-        prefix = []
-        sufix = []
+        prefix = [] #[1, 1*2, 1*2*3, 1*2*3*4]
+        sufix = []#[2*3*4, 3*4, 4, 1]
         
         curr_p = 1
         suf_p =1
@@ -1402,6 +1412,30 @@ class Solution(object):
             return True
         else:
             return False
+
+#Two Sum 1 ******************
+#input: nums = [2,7,11,15], target = 9  
+#output: [0,1] (because nums[0] + nums[1] == 2 + 7 == 9, we return [0, 1])
+class Solution(object):
+    def twoSum(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+    
+
+        mp = {}
+
+        for i in range(len(nums)):
+            diff = target - nums[i]
+    
+            if diff in mp:
+                return ([mp[diff], i])
+                break
+    
+            mp[nums[i]] = i
+        
         
 
         

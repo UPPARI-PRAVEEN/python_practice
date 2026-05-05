@@ -1,0 +1,287 @@
+Got it—you don’t want categories, you want **clean, reusable “algorithm notes”** (like templates + logic) you can revise quickly before solving problems.
+
+Here’s a **compact algorithm notebook** you can literally copy 👇
+
+---
+
+# 📘 ALGORITHM NOTES (INTERVIEW CHEAT SHEET)
+
+---
+
+# 🔹 1. TWO POINTER
+
+### 🧠 When to Use
+
+* Sorted array
+* Pair / triplet problems
+
+### ⚙️ Algorithm
+
+```
+1. left = 0, right = n-1
+2. while left < right:
+      if condition satisfied:
+          record answer
+      if sum < target:
+          left++
+      else:
+          right--
+```
+
+### ⚠️ Notes
+
+* Always move pointer → avoid infinite loop
+* Handle duplicates if needed
+
+---
+
+# 🔹 2. SLIDING WINDOW (VARIABLE SIZE)
+
+### 🧠 When to Use
+
+* Subarray / substring
+* Contiguous problems
+
+### ⚙️ Algorithm
+
+```
+1. left = 0
+2. for right in range(n):
+      add element to window
+
+      while window invalid:
+            remove left element
+            left++
+
+      update answer
+```
+
+### ⚠️ Notes
+
+* “Invalid condition” is key
+* Works only for contiguous
+
+---
+
+# 🔹 3. HASHMAP + PREFIX SUM
+
+### 🧠 When to Use
+
+* Subarray sum = k
+* Count / longest subarray
+
+### ⚙️ Algorithm
+
+```
+1. map = {0:-1}
+2. curr_sum = 0
+
+3. for num in nums:
+      curr_sum += num
+
+      if (curr_sum - k) in map:
+            update answer
+
+      map[curr_sum] += 1
+```
+
+### ⚠️ Notes
+
+* Initialize `{0:-1}` IMPORTANT
+* Works with negatives
+
+---
+
+# 🔹 4. BINARY SEARCH
+
+### 🧠 When to Use
+
+* Sorted array
+* Monotonic condition
+
+### ⚙️ Algorithm
+
+```
+1. left = 0, right = n-1
+
+2. while left <= right:
+      mid = (left + right) // 2
+
+      if found:
+          return mid
+      elif target < mid:
+          right = mid - 1
+      else:
+          left = mid + 1
+```
+
+### ⚠️ Notes
+
+* Avoid infinite loop
+* Think about boundaries
+
+---
+
+# 🔹 5. BFS (GRAPH / GRID)
+
+### 🧠 When to Use
+
+* Shortest path (unweighted)
+* Level traversal
+
+### ⚙️ Algorithm
+
+```
+1. queue = [start]
+2. mark visited
+
+3. while queue:
+      node = pop
+
+      for neighbor:
+            if not visited:
+                  mark visited
+                  push to queue
+```
+
+### ⚠️ Notes
+
+* Mark visited BEFORE pushing
+* Use for minimum steps problems
+
+---
+
+# 🔹 6. DFS (RECURSION)
+
+### 🧠 When to Use
+
+* Trees
+* Graph traversal
+* Backtracking base
+
+### ⚙️ Algorithm
+
+```
+def dfs(node):
+    if base case:
+        return
+
+    for neighbor:
+        dfs(neighbor)
+```
+
+### ⚠️ Notes
+
+* Watch stack overflow
+* Use visited for graphs
+
+---
+
+# 🔹 7. DYNAMIC PROGRAMMING (DP)
+
+### 🧠 When to Use
+
+* Overlapping subproblems
+* Optimization / counting
+
+### ⚙️ Algorithm Framework
+
+```
+1. Define dp state
+2. Write transition
+3. Base case
+4. Fill dp
+```
+
+### Example Pattern
+
+```
+dp[i] = max(dp[i-1], dp[i-2] + nums[i])
+```
+
+### ⚠️ Notes
+
+* Most mistakes happen in state definition
+* Think bottom-up
+
+---
+
+# 🔹 8. BACKTRACKING
+
+### 🧠 When to Use
+
+* Permutations / combinations
+
+### ⚙️ Algorithm
+
+```
+def backtrack(path):
+    if solution:
+        save result
+        return
+
+    for choice:
+        make choice
+        backtrack(path)
+        undo choice
+```
+
+### ⚠️ Notes
+
+* Always undo (backtrack)
+* Tree structure thinking
+
+---
+
+# 🔹 9. GREEDY
+
+### 🧠 When to Use
+
+* Local optimal works globally
+
+### ⚙️ Algorithm
+
+```
+1. Sort (if needed)
+2. Pick best option at each step
+3. Move forward
+```
+
+### ⚠️ Notes
+
+* Doesn’t work for all problems
+* Validate with examples
+
+---
+
+# 🔹 10. HEAP (PRIORITY QUEUE)
+
+### 🧠 When to Use
+
+* Top K problems
+* Min / Max element repeatedly
+
+### ⚙️ Algorithm
+
+```
+1. Build heap
+2. Push / pop elements
+3. Maintain size if needed
+```
+
+---
+
+# 🔥 FINAL: PROBLEM DECISION FLOW
+
+```
+1. Contiguous? → Sliding Window
+2. Sum problems? → Prefix Sum + HashMap
+3. Sorted / pairs? → Two Pointer
+4. Shortest path? → BFS
+5. All possibilities? → Backtracking
+6. Repeating work? → DP
+7. Sorted search? → Binary Search
+```
+
+---
+
