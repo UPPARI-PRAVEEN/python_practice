@@ -602,7 +602,7 @@ print(dp)
 res = f(0, -1, arr, n,dp)
 print(res)
 
-#***************** Merge sort ******************
+#***************** Merge sort leetcode 912******************
 #input: nums = [5,2,3,1]
 #output: [1,2,3,5] (the array is sorted in ascending order using the merge sort algorithm)
 class Solution(object):
@@ -633,6 +633,29 @@ class Solution(object):
             res.extend(right[j:])
             return res
         return mergeSort(nums)
+
+
+#***************** Best time to buy and sell stock 121 ******************
+#input: prices = [7,1,5,3,6,4]
+#output: 5 (buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5.
+# Note that buying on day 2 and selling on day 1 is not allowed because you must buy before you sell.)
+class Solution(object):
+    def maxProfit(self, prices):
+        """
+        :type prices: List[int]
+        :rtype: int
+        """
+        buy = prices[0]
+        sell_profit = 0
+        for i in range(1,len(prices)):
+            if prices[i] < buy:
+                buy = prices[i]
+            elif sell_profit < prices[i] - buy:
+                sell_profit = prices[i] - buy
+        return sell_profit
+
+
+        
 
             
 
