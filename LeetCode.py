@@ -1413,7 +1413,7 @@ class Solution(object):
         else:
             return False
 
-#Two Sum 1 ******************
+#Two Sum 1  problem******************
 #input: nums = [2,7,11,15], target = 9  
 #output: [0,1] (because nums[0] + nums[1] == 2 + 7 == 9, we return [0, 1])
 class Solution(object):
