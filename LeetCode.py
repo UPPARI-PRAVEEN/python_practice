@@ -75,6 +75,14 @@ for ch in st:
     if dic[ch] == 1:
         print(ch)
         break;
+# or Else we do using count method of string
+st = "bmmbabbmmb"
+
+for i in range(len(st)):
+    if st.count(st[i]) == 1:
+        print(st[i])
+        break
+    
 
 exception handling
 try:
