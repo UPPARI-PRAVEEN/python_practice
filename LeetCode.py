@@ -143,8 +143,9 @@ reverse(ls,k,len(ls)-1)
 print(ls)
 
 
-#**** max sum of subarray
+#**** max sum of subarray leetcode 53 ******************
 ls =  [-2,1,-3,4,-1,2,1,-5,4]
+#output: 6 (subarray [4,-1,2,1] has the largest sum = 6)
 
 max_sum = float('-inf')
 curr_sum = 0;
@@ -182,6 +183,7 @@ print(res)
 #**** find all subarray with given sum
 
 ls = [1,3,2,4]
+#out = 
 targetSum = 6
 res = []
 
