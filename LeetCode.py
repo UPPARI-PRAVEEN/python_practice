@@ -373,7 +373,7 @@ for num in arr:
         second = num
 
 print(second)
-#***** longest substring without repeating characters
+#***** longest substring without repeating characters leetcode 3
 s = "abcabcbb"
 # Output: "abc"
 
@@ -394,7 +394,7 @@ sorting1 = longesSub(s)
 print(sorting1)
 
 
-#**** count of each character in string 
+#**** count of each character in string  leetcode 443
 s = "aaabbcc"
 # Output: "a3b2c1"
 res = "";
@@ -414,7 +414,7 @@ res = res + s[-1] + str(count + 1)
 print(res)
 
 
-#**** find all elements which are greater than next element in list
+#**** find all elements which are greater than next element in list leetcode  leaders in array  6
 ls = [16, 17, 4, 3, 5, 2]
 res = []
 

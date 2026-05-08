@@ -1,0 +1,258 @@
+All these are based on the same pattern:
+
+# Multi Source BFS
+
+Instead of starting BFS from one node, start from many nodes together.
+
+---
+
+# Core Idea
+
+Normal BFS:
+
+```python id="q2lgjr"
+queue = [one source]
+```
+
+Multi Source BFS:
+
+```python id="rjlwm3"
+queue = [many sources]
+```
+
+Then BFS spreads level by level.
+
+Each level usually means:
+
+* time
+* distance
+* steps
+* layers
+
+---
+
+# Generic Template
+
+```python id="4njlwm"
+1. Push all source cells into queue
+
+2. Mark them visited
+
+3. BFS level by level
+
+4. For each neighbor:
+      if valid:
+          update answer
+          push into queue
+
+5. Each BFS layer = 1 unit
+```
+
+---
+
+# 1. Rotting Oranges
+
+Rotting Oranges
+
+## Logic
+
+* Rotten oranges infect neighbors
+* Every minute infection spreads
+
+### Sources
+
+All rotten oranges (`2`)
+
+### BFS Meaning
+
+One BFS level = one minute
+
+### Goal
+
+Convert all fresh oranges.
+
+---
+
+# Pattern
+
+```python id="jlwmx1"
+Put all 2's into queue
+
+BFS:
+    rot adjacent fresh oranges
+
+count minutes
+```
+
+---
+
+# 2. Walls and Gates
+
+Walls and Gates
+
+## Logic
+
+Need shortest distance from every empty room to nearest gate.
+
+### Sources
+
+All gates (`0`)
+
+### BFS Meaning
+
+Distance from gate
+
+---
+
+# Pattern
+
+```python id="m4jlwm"
+Put all gates into queue
+
+BFS:
+    fill distances layer by layer
+```
+
+Why multi-source?
+
+Because nearest gate can be any gate.
+
+---
+
+# 3. 01 Matrix
+
+01 Matrix
+
+## Logic
+
+For every `1`, find nearest `0`.
+
+### Sources
+
+All `0`s
+
+### BFS Meaning
+
+Distance from nearest zero
+
+---
+
+# Pattern
+
+```python id="jlwm71"
+Put all 0s into queue
+
+BFS:
+    update distance of 1s
+```
+
+---
+
+# 4. Map of Highest Peak
+
+Map of Highest Peak
+
+## Logic
+
+Water cells height = 0
+
+Land should increase gradually.
+
+### Sources
+
+All water cells
+
+### BFS Meaning
+
+Height level
+
+---
+
+# Pattern
+
+```python id="jlwmk8"
+Push all water cells
+
+BFS:
+    neighbors get height + 1
+```
+
+---
+
+# 5. Nearest Exit in Maze
+
+Nearest Exit from Entrance in Maze
+
+## Logic
+
+Shortest path from entrance to boundary.
+
+### Source
+
+Single entrance
+
+### BFS Meaning
+
+Shortest steps
+
+This is normal BFS, not multi-source.
+
+---
+
+# Pattern
+
+```python id="3gjlwm"
+Start from entrance
+
+BFS level by level
+
+First boundary reached = answer
+```
+
+---
+
+# 6. Fire Spread Problems
+
+Common grid pattern.
+
+## Logic
+
+Fire spreads each minute.
+
+### Sources
+
+All fire cells
+
+### BFS Meaning
+
+Time taken to spread
+
+---
+
+# How to identify Multi Source BFS
+
+Whenever problem says:
+
+* nearest
+* minimum distance
+* spread
+* infection
+* time to reach
+* all simultaneously
+* closest source
+
+Think:
+
+# Multi Source BFS
+
+---
+
+# Golden Rule
+
+If many starting points affect grid simultaneously:
+
+```python id="jlwm5w"
+Push all of them into queue first
+```
+
+THAT is Multi Source BFS.
