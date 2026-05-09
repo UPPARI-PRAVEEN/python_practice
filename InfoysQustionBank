@@ -1,0 +1,667 @@
+Yes — the problems in your screenshots look like:
+
+* greedy + DP mix
+* subsequence optimization
+* partition/string DP
+* maximize/minimize score
+* penalty/cost based decisions
+* interval/state transition thinking
+
+These are the exact type of problems that build:
+
+```python id="sqp6lg"
+contest intuition
+optimization thinking
+state transition logic
+```
+
+You should now move from only basic patterns to:
+
+# “Decision DP / Greedy Optimization” Problems
+
+These teach:
+
+* “take / not take”
+* “where should I split?”
+* “how do I minimize penalty?”
+* “what state matters?”
+* “what repeated work exists?”
+
+---
+
+# Best 40 Problems For Your Current Stage
+
+---
+
+# GROUP 1 — Sliding Window + Hashmap Intuition
+
+These improve fast thinking.
+
+1. Longest Substring Without Repeating Characters
+2. Permutation in String
+3. Minimum Window Substring
+4. Longest Repeating Character Replacement
+5. Subarray Sum Equals K
+6. Contiguous Array
+7. Binary Subarrays With Sum
+8. Fruit Into Baskets
+
+---
+
+# GROUP 2 — Greedy Thinking
+
+These train optimization logic.
+
+9. Jump Game
+10. Jump Game II
+11. Gas Station
+12. Partition Labels
+13. Task Scheduler
+14. Non-overlapping Intervals
+15. Merge Intervals
+16. Insert Interval
+
+---
+
+# GROUP 3 — Decision DP (VERY IMPORTANT)
+
+These directly build the logic you are missing.
+
+17. House Robber
+18. House Robber II
+19. Coin Change
+20. Combination Sum IV
+21. Partition Equal Subset Sum
+22. Target Sum
+23. Decode Ways
+24. Word Break
+
+---
+
+# GROUP 4 — String Partition / Cost DP
+
+These are VERY similar to your screenshots.
+
+25. Palindrome Partitioning
+26. Palindrome Partitioning II
+27. Minimum Cost For Tickets
+28. Delete and Earn
+29. Maximum Product Subarray
+30. Longest Increasing Subsequence
+31. Best Time to Buy and Sell Stock
+32. Best Time to Buy and Sell Stock II
+
+---
+
+# GROUP 5 — Graph/Traversal Thinking
+
+These build state exploration intuition.
+
+33. Number of Islands
+34. Max Area of Island
+35. Rotting Oranges
+36. Course Schedule
+37. Course Schedule II
+38. Number of Provinces
+39. Clone Graph
+40. Pacific Atlantic Water Flow
+
+---
+
+# MOST IMPORTANT RULE
+
+Do NOT do this:
+
+```python id="j39d3h"
+solve -> submit -> next problem
+```
+
+Do this instead:
+
+# After Every Problem
+
+Ask:
+
+```python id="d9o81d"
+1. Why brute force fails?
+2. What repeated work exists?
+3. What state matters?
+4. Why this DS/algorithm works?
+5. Can I explain solution without code?
+```
+
+That is how intuition develops fast.
+
+
+
+Perfect — this is exactly what we needed 🔥
+I analyzed your screenshots carefully. Here’s the **actual pattern Infosys used in your Round 1**:
+
+---
+
+# 🎯 🔍 PATTERN IDENTIFIED
+
+## 🧠 1. **String Partition + DP (VERY IMPORTANT)**
+
+From your image:
+
+> Split string into **K substrings**
+> Cost = something like **distinct characters count / squared / frequency-based**
+
+👉 This is **classic DP partition problem**
+
+---
+
+## 🧠 2. **Greedy / Prefix Sum / Flipping Logic**
+
+From second image:
+
+> Positive/negative values
+> Flip signs to maximize/minimize something
+
+👉 This is:
+
+* Greedy + Prefix sum
+* OR Kadane variation
+
+---
+
+## 🧠 3. **Optimization + Simulation**
+
+They are testing:
+
+* Not direct formula
+* You must **derive logic from problem**
+
+---
+
+# 🔥 WHAT THIS MEANS FOR ROUND 2
+
+👉 Expect:
+
+* **Custom problems (not direct LeetCode copy)**
+* Based on:
+
+  * DP partition
+  * Greedy decisions
+  * Prefix / sliding window
+
+---
+
+# 🚀 NOW YOUR TARGET PRACTICE SET (VERY CLOSE MATCH)
+
+## 🔴 1. STRING PARTITION DP (MOST IMPORTANT)
+
+### Practice these:
+
+1. **Palindrome Partitioning II**
+   👉 Split string → minimize cuts
+
+2. **Partition String Into K Substrings (custom DP)**
+   👉 Similar to your question
+
+3. **Word Break**
+   👉 Already done (same pattern)
+
+4. **Minimum Cost to Split Array (very similar logic)**
+   👉 Cost depends on frequency
+
+---
+
+## 🔴 2. COST BASED SUBSTRING PROBLEMS
+
+Practice:
+
+* Count distinct characters in substring
+* Sliding window + hashmap
+* Precompute cost matrix
+
+👉 This is EXACTLY your question pattern
+
+---
+
+## 🔴 3. GREEDY / SIGN FLIP / MAXIMIZATION
+
+Practice:
+
+1. **Maximum Subarray (Kadane)**
+2. **Maximize sum after K negations**
+3. **Prefix sum problems**
+
+---
+
+## 🔴 4. MIXED LOGIC (MOST LIKELY)
+
+Infosys loves:
+
+* Combine **DP + HashMap**
+* Combine **Greedy + Sorting**
+
+---
+
+# 🧠 HOW TO SOLVE YOUR STRING QUESTION (IMPORTANT)
+
+Your question logic:
+
+👉 DP state:
+
+```python
+dp[i][k] = min cost to split first i chars into k parts
+```
+
+👉 Transition:
+Try all partitions:
+
+```python
+dp[i][k] = min(
+    dp[j][k-1] + cost(j → i)
+)
+```
+
+👉 Key challenge:
+
+* Efficient cost calculation (distinct chars)
+
+---
+
+# ⚡ YOUR WEAK AREA (CLEAR NOW)
+
+From your performance:
+
+* DP base condition → ⚠️
+* Graph → ⚠️
+* Custom problem thinking → ⚠️
+
+---
+
+# 🔥 FINAL PRACTICE SET (VERY TARGETED)
+
+Do ONLY these:
+
+### 🧠 DP
+
+* Palindrome Partitioning II
+* Word Break
+* Partition Equal Subset
+
+### ⚡ Greedy
+
+* Max sum after K negations
+* Kadane
+
+### 🔍 String
+
+* Longest substring without repeating
+* Distinct characters count
+
+---
+
+# 🚀 FINAL ADVICE
+
+👉 Don’t expect direct LeetCode question
+👉 Expect:
+
+> “Custom problem → reduce to known pattern”
+
+---
+
+# 🔥 If you want (VERY IMPORTANT)
+
+I can:
+
+* Recreate **exact Infosys-style questions (like your screenshot)**
+* Give you **2 full custom problems (same difficulty)**
+
+Just say:
+👉 “give custom questions”
+
+That will prepare you perfectly 💯
+
+
+
+
+Perfect — now we’ll do **exact Infosys-style questions** (not LeetCode copy).
+These are **very close to what you saw in screenshots** 🔥
+
+---
+
+# 🔥 🧠 CUSTOM PROBLEM 1 (STRING + DP PARTITION)
+
+### 🔹 Problem: Minimum Cost String Split
+
+You are given a lowercase string `s` and an integer `k`.
+
+You must split the string into **exactly k non-empty contiguous substrings**.
+
+The **cost of a substring** is:
+
+> (number of distinct characters in that substring)²
+
+Return the **minimum total cost** of splitting the string.
+
+If it is not possible, return `-1`.
+
+---
+
+### 🔸 Example:
+
+```
+Input:
+s = "abac"
+k = 2
+
+Output:
+5
+```
+
+### 🔸 Explanation:
+
+Possible splits:
+
+* "a" | "bac" → cost = 1² + 3² = 1 + 9 = 10
+* "ab" | "ac" → cost = 2² + 2² = 4 + 4 = 8
+* "aba" | "c" → cost = 2² + 1² = 4 + 1 = 5 ✅
+
+---
+
+### 🎯 Expected Approach:
+
+* DP + substring cost calculation
+* Optimize using precomputation
+
+---
+
+# 🔥 ⚡ CUSTOM PROBLEM 2 (GREEDY + PREFIX)
+
+### 🔹 Problem: Maximum Score After K Flips
+
+You are given an array `nums` of integers and an integer `k`.
+
+You can perform **at most k operations**.
+In each operation, you can **choose any index and flip its sign**.
+
+Return the **maximum possible sum of the array** after at most k operations.
+
+---
+
+### 🔸 Example:
+
+```
+Input:
+nums = [-2, -3, 4, 5]
+k = 2
+
+Output:
+14
+```
+
+### 🔸 Explanation:
+
+Flip -3 → 3
+Flip -2 → 2
+Final array: [2, 3, 4, 5] → sum = 14
+
+---
+
+### 🎯 Expected Approach:
+
+* Greedy + sorting
+* Handle remaining k carefully
+
+---
+
+# 🔥 🚀 CUSTOM PROBLEM 3 (STRING + SLIDING WINDOW)
+
+### 🔹 Problem: Longest Valid Substring with K Distinct
+
+You are given a string `s` and integer `k`.
+
+Return the **length of the longest substring that contains at most k distinct characters**.
+
+---
+
+### 🔸 Example:
+
+```
+Input:
+s = "eceba"
+k = 2
+
+Output:
+3   ("ece")
+```
+
+---
+
+### 🎯 Expected Approach:
+
+* Sliding window
+* HashMap (frequency)
+
+---
+
+# ⏱️ HOW TO PRACTICE (IMPORTANT)
+
+* Q1 → take time (40 min, DP)
+* Q2 → 20 min
+* Q3 → 20 min
+
+👉 Simulate real test
+
+---
+
+# 🎯 What this set builds
+
+* Q1 → Infosys custom DP
+* Q2 → Greedy thinking
+* Q3 → Fast implementation
+
+---
+
+# 🚀 NEXT STEP
+
+After solving, tell me:
+
+* Which one you couldn’t solve
+* Where stuck
+
+👉 I’ll fix your last weak point before exam
+
+---
+
+If you want next level:
+👉 I can give **even harder Infosys-style problems (round 2 level)**
+
+
+
+Good — now you’re thinking in the **right direction**.
+You don’t need more LeetCode. You need **Infosys-style custom problems** like your screenshots.
+
+Here are **🔥 20 CUSTOM PROBLEMS (very close to your Round 1 pattern)**
+👉 Focus: **DP partition + Greedy + Prefix + Sliding window**
+
+---
+
+# 🔴 🧠 STRING + DP PARTITION (MOST IMPORTANT)
+
+## 1. Minimum Cost Split (Distinct Count)
+
+Split into k substrings → cost = distinct chars
+👉 minimize total cost
+
+---
+
+## 2. Minimum Cost Split (Max Frequency)
+
+Cost of substring = max frequency of any char
+👉 minimize sum
+
+---
+
+## 3. Minimum Cost Split (Duplicate Penalty)
+
+Cost = number of duplicate characters
+👉 minimize
+
+---
+
+## 4. Split String to Maximize Score
+
+Score = sum of (length * distinct chars)
+👉 maximize
+
+---
+
+## 5. Split into k Palindromes
+
+Minimum changes required to make each substring palindrome
+
+---
+
+## 6. Partition String with Unique Characters
+
+Each substring must have unique chars
+👉 minimize number of substrings
+
+---
+
+## 7. Partition to Minimize Difference
+
+Split into k substrings → minimize difference of lengths
+
+---
+
+## 8. Split String with Cost Matrix
+
+Cost(i, j) given → find min cost partition
+
+---
+
+---
+
+# 🔴 ⚡ GREEDY + PREFIX SUM
+
+## 9. Max Sum After K Negations
+
+(very similar to your screenshot)
+
+---
+
+## 10. Maximize Prefix Sum After Flips
+
+Flip signs to maximize prefix sum
+
+---
+
+## 11. Min Operations to Make Array Positive
+
+Flip elements → minimize operations
+
+---
+
+## 12. Max Score by Choosing Prefix/Suffix
+
+Choose elements from ends → maximize score
+
+---
+
+## 13. Min Cost to Equalize Array
+
+Convert all elements to same value
+
+---
+
+---
+
+# 🔴 🪟 SLIDING WINDOW + STRING
+
+## 14. Longest Substring with K Distinct
+
+(already saw pattern)
+
+---
+
+## 15. Minimum Window with K Unique Characters
+
+---
+
+## 16. Count Substrings with Exactly K Distinct
+
+---
+
+## 17. Longest Substring Without Repeating
+
+---
+
+---
+
+# 🔴 🔢 PREFIX + HASHMAP
+
+## 18. Subarray Sum Equals K (variation)
+
+Count / longest / shortest
+
+---
+
+## 19. Max Length Subarray with Equal 0s and 1s
+
+---
+
+## 20. Longest Subarray with Given Sum
+
+---
+
+# 🎯 HOW TO USE THIS LIST (IMPORTANT)
+
+Don’t solve all randomly ❌
+
+👉 Do like this:
+
+* Day 1:
+
+  * 2 DP partition
+  * 1 greedy
+
+* Day 2:
+
+  * 2 sliding window
+  * 1 prefix
+
+---
+
+# 🔥 MOST IMPORTANT (based on your screenshot)
+
+👉 HIGH PRIORITY:
+
+* DP Partition problems (1–5)
+* Greedy flip problems (9–10)
+
+👉 MEDIUM:
+
+* Sliding window
+* Prefix
+
+---
+
+# 🚀 FINAL TRUTH
+
+Infosys will NOT ask:
+
+* direct LIS
+* direct graph
+
+👉 They ask:
+
+> “Custom problem → reduce to DP/Greedy”
+
+---
+
+# 🔥 If you want next (very powerful)
+
+I can:
+
+* Give **FULL solutions + patterns for top 5 hardest**
+* Or take **1 real mock based on THESE patterns**
+
+Just say:
+👉 “solve top 5” or “mock custom”
