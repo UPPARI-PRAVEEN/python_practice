@@ -1487,6 +1487,49 @@ class Solution(object):
                 longest = max(longest,length)
         return longest
 
+#********* Partition Palindrome 131 ******************
+#input: s = "aab"
+#output: [["a","a","b"],["aa","b"]] (the palindrome partitioning of "aab" is [["a","a","b"],["aa","b"]], 
+#where "a", "a", and "b" are palindromic substrings, and "aa" is also a palindromic substring)
+class Solution(object):
+    def partition(self, s):
+        """
+        :type s: str
+        :rtype: List[List[str]]
+        """
+
+        def isPalin(st,start,end):
+            if len(st) == 1:
+                return True
+            
+            while start < end:
+                if st[start] != st[end]:
+                    return False
+                start +=1
+                end -=1
+            return True
+
+        res = []
+
+        def fn(s,index,res,nested):
+            if index == len(s):
+                res.append(nested[:])
+                return
+            
+            for i in range(index,len(s)):
+                if isPalin(s,index,i):
+                    path.append(s[index:i+1])
+                    fn(s,i+1,res,path)
+                    path.pop()
+        res = []
+        path = []
+        fn(s,0,res,path)
+        return res
+                    
+            
+            
+        
+
 
         
         
