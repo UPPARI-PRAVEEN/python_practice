@@ -138,6 +138,40 @@ class Solution(object):
         return res
 
 
+#680. Valid Palindrome II
+#INPUT: s = "abca"
+#OUTPUT: true
+#EXPLANATION: You could delete the character 'c' to get a palindrome "aba", which is true.
+class Solution(object):
+    def validPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        def isPalin(start,end):
+            
+            while start < end:
+                if s[start] != s[end]:
+                    return False
+                start +=1
+                end -=1
+            return True
+        left = 0
+        right = len(s)-1
+        while left < right:
+            if s[left] != s[right]:
+
+                return isPalin(left +1,right) or isPalin(left,right-1)
+            left +=1
+            right -=1
+        return True
+
+
+            
+
+        
+
+
 
         
 
