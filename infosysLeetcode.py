@@ -1,11 +1,12 @@
 
 
-# 1593. Split a String Into the Max Number of Unique Substrings
-#INPUT: nums = [1,2,1,2,1], k = 2
-#OUTPUT: 8
-#EXPLANATION: One optimal way to split nums into unique substrings is: [1], [2,1], [2,1]. 
-#The cost of this split is 3 (for the first substring) + 4 (for the second substring) + 4 (for the third substring) + 2 (for k) = 8. 
-#It can be shown that 8 is the minimum cost possible.
+# dupliate penalty 2567******************
+#input: nums = [1,2,2,3], k = 2
+#output: 4
+#explanation: We can split nums into the two subarrays [1,2] and [2,3]. 
+# The cost of the first subarray is 1 (no duplicates) and the cost of the second subarray is 3 
+# (one duplicate 2). The total cost is 1 + 3 = 4. It can be shown that we cannot split nums into 
+# subarrays such that the total cost is less than 4.
 class Solution(object):
     def minCost(self, nums, k):
         """
