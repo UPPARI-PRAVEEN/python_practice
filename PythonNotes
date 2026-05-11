@@ -124,3 +124,5 @@ print(math.sqrt(16))  # 4.0
 2. from module import *
 from math import *
 print(sqrt(16))  # 4.0
+which is better?
+Using import module is generally better for code readability and maintainability, as it makes it clear where functions and variables are coming from. It also helps to avoid name conflicts. Using from module import * can lead to confusion and should be avoided in larger projects or when working with multiple modules.
