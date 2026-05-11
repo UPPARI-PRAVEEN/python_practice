@@ -1487,44 +1487,45 @@ class Solution(object):
                 longest = max(longest,length)
         return longest
 
-#********* Partition Palindrome 131 ******************
-#input: s = "aab"
-#output: [["a","a","b"],["aa","b"]] (the palindrome partitioning of "aab" is [["a","a","b"],["aa","b"]], 
-#where "a", "a", and "b" are palindromic substrings, and "aa" is also a palindromic substring)
-class Solution(object):
-    def partition(self, s):
-        """
-        :type s: str
-        :rtype: List[List[str]]
-        """
 
-        def isPalin(st,start,end):
-            if len(st) == 1:
-                return True
-            
-            while start < end:
-                if st[start] != st[end]:
-                    return False
-                start +=1
-                end -=1
-            return True
+                
+        
 
-        res = []
+#********* Minimum Cost to Cut a Stick 1547 ******************
+#input: n = 7, cuts = [1,3,4,5]
+#output: 16 (the optimal way to cut the stick is to cut at positions 3, 4, 1, and then 5. 
+#The total cost is 7 (for cutting at 3) + 4 (for cutting at 4) + 2 (for cutting at 1) + 3 (for cutting at 5) = 16)
+import sys
+sys.setrecursionlimit(10**7)
 
-        def fn(s,index,res,nested):
-            if index == len(s):
-                res.append(nested[:])
-                return
-            
-            for i in range(index,len(s)):
-                if isPalin(s,index,i):
-                    path.append(s[index:i+1])
-                    fn(s,i+1,res,path)
-                    path.pop()
-        res = []
-        path = []
-        fn(s,0,res,path)
-        return res
+def f(i, j, cuts):
+    # base case
+    if i > j:
+        return 0
+
+    mini = float('inf')
+
+    # try every cut position as LAST cut
+    for ind in range(i, j + 1):
+
+        cost = (cuts[j + 1] - cuts[i - 1]) \
+               + f(i, ind - 1, cuts) \
+               + f(ind + 1, j, cuts)
+
+        mini = min(mini, cost)
+
+    return mini
+
+
+def cost(n, c, cuts):
+    # add boundaries
+    cuts.append(n)
+    cuts.insert(0, 0)
+
+    cuts.sort()
+
+    # start recursion
+    return f(1, c, cuts)
                     
             
             

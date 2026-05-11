@@ -60,4 +60,84 @@ class Solution(object):
                 height = max(height,books[j][1])
                 dp[i] = min(dp[i],height+dp[j+1])
         return dp[0]
+
+
+#Non overlaping palindrom 2472******************
+
+class Solution(object):
+    def maxPalindromes(self, s, k):
+        """
+        :type s: str
+        :type k: int
+        :rtype: int
+        """
+        def isPalin(start,end):
+            
+            while start < end:
+                if s[start] != s[end]:
+                    return False
+                start +=1
+                end -=1
+            return True
+        l = len(s)
+        dp = [0 for _ in range(l+1)]
+        palinCount = 0
+
+        for i in range(l-1,-1,-1):
+            
+            #skipping the curret index
+            dp[i] = dp[i+1]
+
+            #checking for k len
+            if i + k -1 < l and isPalin(i,i+k-1):
+                dp[i] = max(dp[i],1+dp[i+k])
+            
+            #checking for k+1 length
+            if i + k  < l and isPalin(i,i+k):
+                dp[i] = max(dp[i],1+dp[i+k+1])
+        return dp[0]
+
+#********* Partition Palindrome 131 ******************
+#input: s = "aab"
+#output: [["a","a","b"],["aa","b"]] (the palindrome partitioning of "aab" is [["a","a","b"],["aa","b"]], 
+#where "a", "a", and "b" are palindromic substrings, and "aa" is also a palindromic substring)
+class Solution(object):
+    def partition(self, s):
+        """
+        :type s: str
+        :rtype: List[List[str]]
+        """
+
+        def isPalin(st,start,end):
+            if len(st) == 1:
+                return True
+            
+            while start < end:
+                if st[start] != st[end]:
+                    return False
+                start +=1
+                end -=1
+            return True
+
+        res = []
+
+        def fn(s,index,res,nested):
+            if index == len(s):
+                res.append(nested[:])
+                return
+            
+            for i in range(index,len(s)):
+                if isPalin(s,index,i):
+                    path.append(s[index:i+1])
+                    fn(s,i+1,res,path)
+                    path.pop()
+        res = []
+        path = []
+        fn(s,0,res,path)
+        return res
+
+
+
+        
+
         
