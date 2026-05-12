@@ -1526,6 +1526,41 @@ def cost(n, c, cuts):
 
     # start recursion
     return f(1, c, cuts)
+
+
+#********* Longest Substring with At Most K Distinct Characters 340 ******************
+#input: s = "eceba", k = 2
+s = "eceba"
+k = 2
+
+j = 0
+maxLen = 0
+
+hp = {}
+
+for i in range(len(s)):
+
+    # add current character
+    if s[i] in hp:
+        hp[s[i]] += 1
+    else:
+        hp[s[i]] = 1
+
+    # shrink window if distinct chars > k
+    while len(hp) > k:
+
+        hp[s[j]] -= 1
+
+        # remove character if frequency becomes 0
+        if hp[s[j]] == 0:
+            del hp[s[j]]
+
+        j += 1
+
+    # update maximum length
+    maxLen = max(maxLen, i - j + 1)
+
+print(maxLen)
                     
             
             
