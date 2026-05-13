@@ -1587,6 +1587,60 @@ def fn(path, remaining):
 fn("", s)
 
 print(res)
+
+
+#********* Minimum Window Substring 76 ******************
+#input: s = "ADOBECODEBANC", t = "ABC"
+#output: "BANC" (the minimum window substring of s that contains all the characters of t is "BANC")
+class Solution(object):
+    def minWindow(self, s, t):
+
+        hp = {}
+
+        for ch in t:
+            if ch in hp:
+                hp[ch] += 1
+            else:
+                hp[ch] = 1
+
+        count = 0
+        j = 0
+
+        start = -1
+        minLen = float('inf')
+
+        for i in range(len(s)):
+
+            ch = s[i]
+
+            if ch in hp:
+                hp[ch] -= 1
+
+                if hp[ch] >= 0:
+                    count += 1
+
+            while count == len(t):
+
+                windowLen = i - j + 1
+
+                if windowLen < minLen:
+                    minLen = windowLen
+                    start = j
+
+                leftChar = s[j]
+
+                if leftChar in hp:
+                    hp[leftChar] += 1
+
+                    if hp[leftChar] > 0:
+                        count -= 1
+
+                j += 1
+
+        if start == -1:
+            return ""
+
+        return s[start:start + minLen]
                     
             
             
