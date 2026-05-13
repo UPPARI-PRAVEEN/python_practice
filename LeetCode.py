@@ -1561,6 +1561,32 @@ for i in range(len(s)):
     maxLen = max(maxLen, i - j + 1)
 
 print(maxLen)
+
+#********* Permutations 46 ******************
+#input: nums = [1,2,3]
+# output: [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]] (all possible permutations of the array [1, 2, 3])
+s = "ab" # [ab,ba]
+
+res = []
+
+def fn(path, remaining):
+
+    if remaining == "":
+        res.append(path)
+        return
+
+    for i in range(len(remaining)):
+
+        ch = remaining[i]
+
+        left = remaining[:i]
+        right = remaining[i+1:]
+
+        fn(path + ch, left + right)
+
+fn("", s)
+
+print(res)
                     
             
             
