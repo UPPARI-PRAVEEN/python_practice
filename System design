@@ -1,0 +1,116 @@
+**System design** is the process of defining the architecture, components, and interactions of a system so that it meets specific requirements like scalability, reliability, and performance.
+
+At a high level, it’s about answering:
+👉 *“How do we build a system that works well under real-world conditions?”*
+
+---
+
+## 🧩 Key idea
+
+In Software Engineering, system design focuses on how different parts of a system fit together and communicate.
+
+---
+
+## 🏗️ What a “system” includes
+
+A system can be anything from:
+
+* A simple web app
+* A mobile application backend
+* A massive platform like Netflix or Amazon
+
+---
+
+## ⚙️ Core components of system design
+
+### 1. Architecture
+
+How the system is structured:
+
+* Monolithic (everything together)
+* Microservices (split into small services)
+
+---
+
+### 2. Database design
+
+How data is stored and retrieved:
+
+* SQL (structured, relational)
+* NoSQL (flexible, scalable)
+
+---
+
+### 3. APIs (communication)
+
+How different parts talk to each other:
+
+* REST APIs
+* GraphQL
+
+---
+
+### 4. Scalability
+
+Handling growth:
+
+* Vertical scaling (bigger machine)
+* Horizontal scaling (more machines)
+
+---
+
+### 5. Reliability & availability
+
+Making sure the system:
+
+* Doesn’t crash easily
+* Recovers quickly
+
+---
+
+### 6. Performance
+
+Ensuring fast response times:
+
+* Caching
+* Load balancing
+* Efficient algorithms
+
+---
+
+## 🧠 Example (simple)
+
+Imagine designing a **food delivery app**:
+
+* Users place orders (frontend)
+* Server processes requests (backend)
+* Database stores orders and users
+* Payment service handles transactions
+* Delivery system tracks drivers
+
+System design decides:
+
+* How these parts connect
+* How to handle 1 user vs 1 million users
+* How to avoid failures
+
+---
+
+## 🎯 Why system design matters
+
+Good system design ensures:
+
+* Apps don’t crash under heavy traffic
+* Data is safe and consistent
+* Users get fast and smooth experience
+
+---
+
+## 🪜 In short
+
+System design =
+**Planning how a system is built so it works efficiently at scale**
+
+---
+
+If you want, I can walk you through a real interview-style system design (like designing WhatsApp or Instagram) step by step.

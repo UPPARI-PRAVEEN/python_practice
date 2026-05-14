@@ -1639,11 +1639,36 @@ class Solution(object):
   
 
 
-  
+
         if start == -1:
             return ""
 
         return s[start:start + minLen]
+
+
+#********* Contiguous Array 525 ******************
+#input: nums = [0,1,0]
+#output: 2 (the longest contiguous subarray with equal number of 0 and 1 is [0,1] or [1,0], both of which have length 2)
+nums = [0,0,1,1,1]
+
+currSum = 0
+maxLen = 0
+
+mp = {0: -1}
+
+for i in range(len(nums)):
+
+    if nums[i] == 0:
+        nums[i] = -1
+
+    currSum += nums[i]
+
+    if currSum in mp:
+        maxLen = max(maxLen, i - mp[currSum])
+    else:
+        mp[currSum] = i
+
+print(maxLen)
                     
             
             
