@@ -1,0 +1,740 @@
+# Intermediate + Advanced SQL Interview Questions
+
+---
+
+## 1. Find customer names along with total amount spent
+
+```sql id="e7b5tw"
+SELECT c.first_name,
+       c.last_name,
+       SUM(o.amount) AS total_spent
+FROM Customers c
+JOIN Orders o
+ON c.customer_id = o.customer_id
+GROUP BY c.customer_id, c.first_name, c.last_name;
+```
+
+---
+
+## 2. Find the customer who spent the most money
+
+```sql id="5jlwru"
+SELECT c.first_name,
+       SUM(o.amount) AS total_spent
+FROM Customers c
+JOIN Orders o
+ON c.customer_id = o.customer_id
+GROUP BY c.customer_id, c.first_name
+ORDER BY total_spent DESC
+LIMIT 1;
+```
+
+---
+
+## 3. Find duplicate ages
+
+```sql id="h5hqng"
+SELECT age, COUNT(*) AS total
+FROM Customers
+GROUP BY age
+HAVING COUNT(*) > 1;
+```
+
+---
+
+## 4. Find customers who ordered Keyboard
+
+```sql id="0p8f2r"
+SELECT c.first_name, c.last_name
+FROM Customers c
+JOIN Orders o
+ON c.customer_id = o.customer_id
+WHERE o.item = 'Keyboard';
+```
+
+---
+
+## 5. Find customers who placed more than one order
+
+```sql id="c5h35r"
+SELECT c.first_name,
+       COUNT(o.order_id) AS total_orders
+FROM Customers c
+JOIN Orders o
+ON c.customer_id = o.customer_id
+GROUP BY c.customer_id, c.first_name
+HAVING COUNT(o.order_id) > 1;
+```
+
+---
+
+## 6. Find the second highest order amount using LIMIT
+
+```sql id="0a7dn8"
+SELECT DISTINCT amount
+FROM Orders
+ORDER BY amount DESC
+LIMIT 1 OFFSET 1;
+```
+
+---
+
+## 7. Find all customers with Delivered shipping status
+
+```sql id="yzv0xw"
+SELECT c.first_name,
+       s.status
+FROM Customers c
+JOIN Shippings s
+ON c.customer_id = s.customer
+WHERE s.status = 'Delivered';
+```
+
+---
+
+## 8. Find all customers who did NOT order anything
+
+```sql id="yoq2n8"
+SELECT c.*
+FROM Customers c
+LEFT JOIN Orders o
+ON c.customer_id = o.customer_id
+WHERE o.order_id IS NULL;
+```
+
+---
+
+## 9. Find all items ordered by UK customers
+
+```sql id="kqg6gj"
+SELECT c.first_name,
+       o.item
+FROM Customers c
+JOIN Orders o
+ON c.customer_id = o.customer_id
+WHERE c.country = 'UK';
+```
+
+---
+
+## 10. Count total orders for each item
+
+```sql id="c8qwy5"
+SELECT item,
+       COUNT(*) AS total_orders
+FROM Orders
+GROUP BY item;
+```
+
+---
+
+# CASE WHEN Questions
+
+---
+
+## 11. Categorize orders as Expensive or Cheap
+
+```sql id="o0gf2v"
+SELECT item,
+       amount,
+       CASE
+           WHEN amount > 1000 THEN 'Expensive'
+           ELSE 'Cheap'
+       END AS category
+FROM Orders;
+```
+
+---
+
+## 12. Show whether customer is Adult or Young
+
+```sql id="6jv9gf"
+SELECT first_name,
+       age,
+       CASE
+           WHEN age >= 25 THEN 'Adult'
+           ELSE 'Young'
+       END AS age_group
+FROM Customers;
+```
+
+---
+
+# Self Join Questions
+
+---
+
+## 13. Find customers from the same country
+
+```sql id="a2z2yn"
+SELECT c1.first_name,
+       c2.first_name,
+       c1.country
+FROM Customers c1
+JOIN Customers c2
+ON c1.country = c2.country
+AND c1.customer_id <> c2.customer_id;
+```
+
+---
+
+# EXISTS Questions
+
+---
+
+## 14. Find customers who placed at least one order
+
+```sql id="5y9lh6"
+SELECT *
+FROM Customers c
+WHERE EXISTS (
+    SELECT 1
+    FROM Orders o
+    WHERE c.customer_id = o.customer_id
+);
+```
+
+---
+
+## 15. Find customers who never placed orders using NOT EXISTS
+
+```sql id="q2t7vb"
+SELECT *
+FROM Customers c
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM Orders o
+    WHERE c.customer_id = o.customer_id
+);
+```
+
+---
+
+# Window Function Questions
+
+---
+
+## 16. Dense rank based on order amount
+
+```sql id="6z7n8u"
+SELECT order_id,
+       amount,
+       DENSE_RANK() OVER(ORDER BY amount DESC) AS drnk
+FROM Orders;
+```
+
+---
+
+## 17. Running total of order amounts
+
+```sql id="jlwm27"
+SELECT order_id,
+       amount,
+       SUM(amount) OVER(ORDER BY order_id) AS running_total
+FROM Orders;
+```
+
+---
+
+## 18. Find highest order for each customer
+
+```sql id="0clg4v"
+SELECT customer_id,
+       MAX(amount) AS highest_order
+FROM Orders
+GROUP BY customer_id;
+```
+
+---
+
+# String Function Questions
+
+---
+
+## 19. Get full customer name
+
+```sql id="d3p7i2"
+SELECT CONCAT(first_name, ' ', last_name) AS full_name
+FROM Customers;
+```
+
+---
+
+## 20. Find customers whose name starts with J
+
+```sql id="rkwd2n"
+SELECT *
+FROM Customers
+WHERE first_name LIKE 'J%';
+```
+
+---
+
+## 21. Find customers whose last name ends with e
+
+```sql id="4e9o7y"
+SELECT *
+FROM Customers
+WHERE last_name LIKE '%e';
+```
+
+---
+
+# Date Type Interview Style Questions
+
+(Important in real interviews)
+
+Assume Orders has `order_date`
+
+---
+
+## 22. Find orders placed in current month
+
+```sql id="x4x5ke"
+SELECT *
+FROM Orders
+WHERE MONTH(order_date) = MONTH(CURRENT_DATE)
+AND YEAR(order_date) = YEAR(CURRENT_DATE);
+```
+
+---
+
+## 23. Find total sales month-wise
+
+```sql id="2j0xke"
+SELECT MONTH(order_date) AS month,
+       SUM(amount) AS total_sales
+FROM Orders
+GROUP BY MONTH(order_date);
+```
+
+---
+
+# Tricky Interview Questions
+
+---
+
+## 24. Find nth highest amount (3rd highest example)
+
+```sql id="uokm9w"
+SELECT DISTINCT amount
+FROM Orders
+ORDER BY amount DESC
+LIMIT 1 OFFSET 2;
+```
+
+---
+
+## 25. Find customers having same last name
+
+```sql id="p1qww6"
+SELECT last_name,
+       COUNT(*) AS total
+FROM Customers
+GROUP BY last_name
+HAVING COUNT(*) > 1;
+```
+
+---
+
+## 26. Find item ordered most frequently
+
+```sql id="2tm5m8"
+SELECT item,
+       COUNT(*) AS total
+FROM Orders
+GROUP BY item
+ORDER BY total DESC
+LIMIT 1;
+```
+
+---
+
+## 27. Find customer with no shipping details
+
+```sql id="6ggnd5"
+SELECT c.*
+FROM Customers c
+LEFT JOIN Shippings s
+ON c.customer_id = s.customer
+WHERE s.shipping_id IS NULL;
+```
+
+---
+
+# Very Common Theory Questions
+
+### Explain:
+
+* Primary Key
+* Foreign Key
+* Candidate Key
+* Composite Key
+* Normalization
+* Indexing
+* Clustered vs Non-clustered index
+* ACID properties
+* View vs Materialized View
+* CTE
+* Stored Procedure
+* Trigger
+
+---
+
+# Most Asked SQL Interview Problems
+
+1. Second highest salary
+2. Employees earning more than manager
+3. Duplicate rows
+4. Remove duplicates
+5. Running total
+6. Top N records
+7. Customers without orders
+8. Highest salary department-wise
+9. Consecutive records
+10. Rank vs Dense Rank vs Row Number
+
+These patterns repeat in almost every interview.
+
+
+Here are some good SQL interview-style practice queries using your tables.
+
+---
+
+# Basic Queries
+
+### 1. Get all customers from USA
+
+```sql
+SELECT *
+FROM Customers
+WHERE country = 'USA';
+```
+
+---
+
+### 2. Get customers whose age is greater than 25
+
+```sql
+SELECT first_name, last_name, age
+FROM Customers
+WHERE age > 25;
+```
+
+---
+
+### 3. Show all orders with amount greater than 500
+
+```sql
+SELECT *
+FROM Orders
+WHERE amount > 500;
+```
+
+---
+
+### 4. Find customers whose last name is Doe
+
+```sql
+SELECT *
+FROM Customers
+WHERE last_name = 'Doe';
+```
+
+---
+
+# ORDER BY / LIMIT
+
+### 5. Get highest order amount
+
+```sql
+SELECT *
+FROM Orders
+ORDER BY amount DESC
+LIMIT 1;
+```
+
+---
+
+### 6. Get youngest customer
+
+```sql
+SELECT *
+FROM Customers
+ORDER BY age
+LIMIT 1;
+```
+
+---
+
+# Aggregate Functions
+
+### 7. Find total order amount
+
+```sql
+SELECT SUM(amount) AS total_amount
+FROM Orders;
+```
+
+---
+
+### 8. Find average customer age
+
+```sql
+SELECT AVG(age) AS avg_age
+FROM Customers;
+```
+
+---
+
+### 9. Count customers from each country
+
+```sql
+SELECT country, COUNT(*) AS total_customers
+FROM Customers
+GROUP BY country;
+```
+
+---
+
+### 10. Find maximum order amount
+
+```sql
+SELECT MAX(amount) AS max_amount
+FROM Orders;
+```
+
+---
+
+# JOIN Queries (VERY IMPORTANT FOR INTERVIEWS)
+
+### 11. Show customer names with their orders
+
+```sql
+SELECT c.first_name, c.last_name, o.item, o.amount
+FROM Customers c
+JOIN Orders o
+ON c.customer_id = o.customer_id;
+```
+
+---
+
+### 12. Show customers who placed orders above 500
+
+```sql
+SELECT c.first_name, o.item, o.amount
+FROM Customers c
+JOIN Orders o
+ON c.customer_id = o.customer_id
+WHERE o.amount > 500;
+```
+
+---
+
+### 13. Show shipping status of each customer
+
+```sql
+SELECT c.first_name, s.status
+FROM Customers c
+JOIN Shippings s
+ON c.customer_id = s.customer;
+```
+
+---
+
+### 14. Show customers who have Pending shipping
+
+```sql
+SELECT c.first_name, s.status
+FROM Customers c
+JOIN Shippings s
+ON c.customer_id = s.customer
+WHERE s.status = 'Pending';
+```
+
+---
+
+# GROUP BY + HAVING
+
+### 15. Find customers having more than 1 order
+
+```sql
+SELECT customer_id, COUNT(*) AS total_orders
+FROM Orders
+GROUP BY customer_id
+HAVING COUNT(*) > 1;
+```
+
+---
+
+### 16. Find total amount spent by each customer
+
+```sql
+SELECT customer_id, SUM(amount) AS total_spent
+FROM Orders
+GROUP BY customer_id;
+```
+
+---
+
+### 17. Find countries having more than 1 customer
+
+```sql
+SELECT country, COUNT(*) AS total
+FROM Customers
+GROUP BY country
+HAVING COUNT(*) > 1;
+```
+
+---
+
+# Subqueries
+
+### 18. Find customer who made the highest order
+
+```sql
+SELECT *
+FROM Customers
+WHERE customer_id = (
+    SELECT customer_id
+    FROM Orders
+    ORDER BY amount DESC
+    LIMIT 1
+);
+```
+
+---
+
+### 19. Find customers who never placed orders
+
+```sql
+SELECT *
+FROM Customers
+WHERE customer_id NOT IN (
+    SELECT customer_id
+    FROM Orders
+);
+```
+
+---
+
+### 20. Find customers whose age is greater than average age
+
+```sql
+SELECT *
+FROM Customers
+WHERE age > (
+    SELECT AVG(age)
+    FROM Customers
+);
+```
+
+---
+
+# LEFT JOIN / RIGHT JOIN
+
+### 21. Show all customers and their orders even if no orders exist
+
+```sql
+SELECT c.first_name, o.item
+FROM Customers c
+LEFT JOIN Orders o
+ON c.customer_id = o.customer_id;
+```
+
+---
+
+### 22. Find customers without orders
+
+```sql
+SELECT c.*
+FROM Customers c
+LEFT JOIN Orders o
+ON c.customer_id = o.customer_id
+WHERE o.customer_id IS NULL;
+```
+
+---
+
+# Window Function Queries
+
+### 23. Rank customers based on order amount
+
+```sql
+SELECT customer_id,
+       amount,
+       RANK() OVER(ORDER BY amount DESC) AS rnk
+FROM Orders;
+```
+
+---
+
+### 24. Row number for customers
+
+```sql
+SELECT *,
+       ROW_NUMBER() OVER(ORDER BY customer_id) AS rn
+FROM Customers;
+```
+
+---
+
+### 25. Find second highest order amount
+
+```sql
+SELECT MAX(amount) AS second_highest
+FROM Orders
+WHERE amount < (
+    SELECT MAX(amount)
+    FROM Orders
+);
+```
+
+---
+
+# Frequently Asked Interview Concepts
+
+### 26. Difference between WHERE and HAVING
+
+* `WHERE` filters rows before grouping
+* `HAVING` filters after grouping
+
+Example:
+
+```sql
+SELECT country, COUNT(*)
+FROM Customers
+GROUP BY country
+HAVING COUNT(*) > 1;
+```
+
+---
+
+### 27. INNER JOIN vs LEFT JOIN
+
+* `INNER JOIN` → only matching rows
+* `LEFT JOIN` → all left table rows + matching rows
+
+---
+
+### 28. DELETE vs DROP vs TRUNCATE
+
+| Command  | Removes Data | Removes Table Structure |
+| -------- | ------------ | ----------------------- |
+| DELETE   | Yes          | No                      |
+| TRUNCATE | Yes          | No                      |
+| DROP     | Yes          | Yes                     |
+
+---
+
+These are very common in interviews:
+
+* JOINs
+* GROUP BY + HAVING
+* Subqueries
+* Window functions
+* Ranking
+* Second highest salary/order
+* Customers without orders
+
+Practice writing them without seeing answers.
