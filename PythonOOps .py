@@ -317,3 +317,56 @@ But that’s okay — this is not a basic question 👍
 **What is reference counting in Python?**
 
 👉 You already touched this in GC — now explain clearly.
+
+
+
+
+#encaptulation
+class BankAccount:
+    def __init__(self, owner, initial_balance):
+        self.owner = owner
+        # Private attribute: Hidden from outside access
+        self.__balance = initial_balance 
+
+    # Getter method: Allows controlled read-only access to the balance
+    def get_balance(self):
+        return self.__balance
+
+    # Setter method: Allows controlled updating with safety checks
+    def deposit(self, amount):
+        if amount > 0:
+            self.__balance += amount
+            print(f"Successfully deposited ${amount}")
+        else:
+            print("Error: Deposit amount must be positive!")
+
+    # Setter method: Allows controlled updating with safety checks
+    def withdraw(self, amount):
+        if 0 < amount <= self.__balance:
+            self.__balance -= amount
+            print(f"Successfully withdrew ${amount}")
+        elif amount > self.__balance:
+            print("Error: Insufficient funds!")
+        else:
+            print("Error: Withdrawal amount must be positive!")
+
+# --- Using the Encapsulated Class ---
+
+account = BankAccount("Alice", 500)
+
+# 1. Attempting to access the private variable directly will CRASH or fail
+# print(account.__balance)  # AttributeError: 'BankAccount' object has no attribute '__balance'
+
+# 2. Correct way to view the balance (Using the Getter)
+print(f"Initial Balance: ${account.get_balance()}")  # Output: 500
+
+# 3. Correct way to update the balance (Using Setters)
+account.deposit(200)       # Output: Successfully deposited $200
+account.withdraw(100)      # Output: Successfully withdrew $100
+
+# 4. The Power of Encapsulation: Preventing illegal operations
+account.withdraw(1000)     # Output: Error: Insufficient funds!
+account.deposit(-50)       # Output: Error: Deposit amount must be positive!
+
+# Final check
+print(f"Final Balance: ${account.get_balance()}")    # Output: 600
