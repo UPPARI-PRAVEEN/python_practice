@@ -181,21 +181,52 @@ for i in range(n-1,0,-1):
             
 
 # === Code Execution Successful ===
-# n = 7;
-# itr = 7
-# spaces = 0
-# for i in range(n):
-#     num = 1;
-#     for j in range(spaces):
-#         print(" ",end = " ");
-#     for j in range(itr):
-#         if j <= itr // 2:
-#             print(num,end = " ")
-#             num +=1
-#         else:
-#             print(num,end = " ")
-#             num -=1;
-        
-#     spaces +=1;
-#     itr -=2;
-#     print("")
+n = 4
+
+for i in range(n, 0, -1):
+    
+    # print leading spaces
+    for s in range(n - i):
+        print("  ", end="")
+    
+    # increasing numbers
+    for j in range(1, i + 1):
+        print(j, end=" ")
+    
+    # decreasing numbers
+    for j in range(i - 1, 0, -1):
+        print(j, end=" ")
+    
+    print()
+
+
+
+
+      A
+    A B A
+  A B C B A
+A B C D C B A
+  A B C B A
+    A B A
+      A
+
+
+    n = 4
+
+for i in range(1, n+1):
+    for j in range(n-i):
+        print("  ", end="")
+    for j in range(i):
+        print(chr(65+j), end=" ")
+    for j in range(i-2, -1, -1):
+        print(chr(65+j), end=" ")
+    print()
+
+for i in range(n-1, 0, -1):
+    for j in range(n-i):
+        print("  ", end="")
+    for j in range(i):
+        print(chr(65+j), end=" ")
+    for j in range(i-2, -1, -1):  # ✅ FIX HERE
+        print(chr(65+j), end=" ")
+    print()
