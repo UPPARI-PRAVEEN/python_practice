@@ -153,7 +153,7 @@
 # a = (1, 2, 3)
 # b = a
 
-# a += (4,)
+# a += (4,)#because tuples are immutable, it will create a new tuple with the elements of a and 4 and assign it to a.
 
 # print(a)#(1, 2, 3, 4)
 # print(b)#(1, 2, 3)
