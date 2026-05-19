@@ -1,0 +1,58 @@
+import requests
+
+url = 'https://jsonplaceholder.typicode.com/todos/1'
+
+payload = {
+    "userId": 1,
+    "title": "Updated Todo",
+    "completed": True
+}
+
+response = requests.put(url, json=payload)
+
+data = response.json()
+
+print(data)
+ 
+
+ #methods: GET, POST, PUT, DELETE, PATCH
+# GET: Retrieve data from the server
+# POST: Send data to the server to create a new resource
+# PUT: Update an existing resource on the server
+# DELETE: Remove a resource from the server 
+# PATCH: Partially update an existing resource on the server
+#example of POST request
+import requests
+url = 'https://jsonplaceholder.typicode.com/todos'
+payload = {
+    "userId": 1,
+    "title": "New Todo",
+    "completed": False
+}
+response = requests.post(url, json=payload)
+data = response.json()
+print(data)
+
+#get request example
+import requests
+url = 'https://jsonplaceholder.typicode.com/todos/1'
+response = requests.get(url)
+data = response.json()
+print(data)
+
+#delete request example
+import requests
+url = 'https://jsonplaceholder.typicode.com/todos/1'
+response = requests.delete(url) 
+print(response.status_code)
+
+#patch request example
+import requests
+url = 'https://jsonplaceholder.typicode.com/todos/1'
+payload = {
+    "completed": True
+}
+response = requests.patch(url, json=payload)
+data = response.json()
+print(data)
+
