@@ -230,6 +230,43 @@ for ch in st:
     chars = ""
 print(res)
 
+#**** sort array based on frequency of elements
+#input: arr = [1, 1, 2, 3, 3, 3]
+#output: [3, 3, 3, 1, 1, 2] (the number 3 appears three times, the number 1 appears twice, and the number 2 appears once. So the sorted array is [3, 3, 3, 1, 1, 2])
+
+hp = {}
+
+for i in range(len(arr)):
+    if arr[i] in hp:
+        hp[arr[i]] +=1
+    else:
+        hp[arr[i]] = 1
+
+for i in range(len(arr)):
+    for j in range(len(arr)-1-i):
+        if hp[arr[j]] < hp[arr[j+1]]:
+            arr[j],arr[j+1] = arr[j+1],arr[j]
+print(arr)
+
+#mehod 2
+arr = [3,3,1,2,2,2,8,8,8,8,8]
+
+hp = {}
+res = []
+for i in range(len(arr)):
+    if arr[i] in hp:
+        hp[arr[i]] +=1
+    else:
+        hp[arr[i]] = 1
+
+sortedArr = sorted(hp.items(),key = lambda item:item[1],reverse = True)
+arr.clear()
+for key,val in sortedArr:
+    print(key,val)
+    for _ in range(val):
+        res.append(key)
+print(res)
+
 
 
 
