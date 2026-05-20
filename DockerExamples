@@ -1,0 +1,259 @@
+## What is Docker?
+
+Docker is a platform used to package an application along with all its dependencies into a **container**.
+
+A container includes:
+
+* Application code
+* Runtime
+* Libraries
+* Dependencies
+
+So the application runs the same everywhere:
+
+* Developer machine
+* Testing server
+* Production server
+
+---
+
+# Why Docker is Used
+
+Without Docker:
+
+```text
+Works on my machine ❌
+Fails on server ❌
+```
+
+Because:
+
+* Different OS
+* Different package versions
+* Missing dependencies
+
+With Docker:
+
+```text
+Same container runs everywhere ✅
+```
+
+---
+
+# Important Terms
+
+## 1. Docker Image
+
+A **Docker Image** is a blueprint/template.
+
+It contains:
+
+* Application code
+* Dependencies
+* Configuration
+
+Example:
+
+```text
+Python + Flask App + Required Libraries
+```
+
+Image is read-only.
+
+---
+
+## 2. Docker Container
+
+A running instance of an image.
+
+```text
+Image → Run → Container
+```
+
+Example:
+
+* Image = Recipe
+* Container = Prepared food
+
+---
+
+# Small Docker Example
+
+Suppose we have a simple Python app.
+
+## Step 1: Create app.py
+
+```python
+print("Hello Docker")
+```
+
+---
+
+## Step 2: Create Dockerfile
+
+```dockerfile
+FROM python:3.11
+
+WORKDIR /app
+
+COPY . .
+
+CMD ["python", "app.py"]
+```
+
+---
+
+# Explanation of Dockerfile
+
+## FROM
+
+```dockerfile
+FROM python:3.11
+```
+
+Uses Python base image.
+
+---
+
+## WORKDIR
+
+```dockerfile
+WORKDIR /app
+```
+
+Creates working directory inside container.
+
+---
+
+## COPY
+
+```dockerfile
+COPY . .
+```
+
+Copies current project files into container.
+
+---
+
+## CMD
+
+```dockerfile
+CMD ["python", "app.py"]
+```
+
+Runs application when container starts.
+
+---
+
+# Build Docker Image
+
+Command:
+
+```bash
+docker build -t my-python-app .
+```
+
+Explanation:
+
+* `build` → create image
+* `-t` → tag/name
+* `my-python-app` → image name
+* `.` → current directory
+
+---
+
+# Run Docker Container
+
+```bash
+docker run my-python-app
+```
+
+Output:
+
+```text
+Hello Docker
+```
+
+---
+
+# Flow
+
+```text
+app.py + Dockerfile
+        ↓
+docker build
+        ↓
+Docker Image
+        ↓
+docker run
+        ↓
+Container Running
+```
+
+---
+
+# Real-Time Example
+
+Suppose company has:
+
+* React frontend
+* Node backend
+* MongoDB
+
+Each service runs inside separate containers.
+
+```text
+Frontend Container
+Backend Container
+Database Container
+```
+
+This makes deployment easy and consistent.
+
+---
+
+# Common Docker Commands
+
+## Check Images
+
+```bash
+docker images
+```
+
+---
+
+## Check Running Containers
+
+```bash
+docker ps
+```
+
+---
+
+## Stop Container
+
+```bash
+docker stop <container_id>
+```
+
+---
+
+## Remove Container
+
+```bash
+docker rm <container_id>
+```
+
+---
+
+## Remove Image
+
+```bash
+docker rmi <image_id>
+```
+
+---
+
+# Interview One-Line Answer
+
+> Docker is a containerization platform used to package applications and dependencies together so the application runs consistently across all environments.
