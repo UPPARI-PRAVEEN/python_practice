@@ -1,0 +1,170 @@
+Docker Compose is a tool used to define and run **multi-container Docker applications**. Instead of starting containers one by one with long `docker run` commands, you describe all your services in a single YAML file called `docker-compose.yml` (or `compose.yaml`), then start everything together.
+
+It’s part of Docker Compose and works with Docker.
+
+### What it does
+
+With Docker Compose, you can:
+
+* Run multiple containers together
+* Define networks and volumes
+* Configure environment variables
+* Set startup dependencies
+* Start/stop the whole app with one command
+
+Typical example:
+
+* Web app container
+* Database container
+* Redis cache container
+
+All managed together.
+
+---
+
+## Example
+
+### `compose.yaml`
+
+```yaml
+services:
+  web:
+    image: nginx
+    ports:
+      - "8080:80"
+
+  db:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: secret
+```
+
+### Start everything
+
+```bash
+docker compose up
+```
+
+This:
+
+* Downloads images if needed
+* Creates containers
+* Connects them on a shared network
+* Starts the app
+
+---
+
+## Common commands
+
+### Start containers
+
+```bash
+docker compose up
+```
+
+### Run in background
+
+```bash
+docker compose up -d
+```
+
+### Stop containers
+
+```bash
+docker compose down
+```
+
+### View logs
+
+```bash
+docker compose logs
+```
+
+### Rebuild services
+
+```bash
+docker compose up --build
+```
+
+---
+
+## Why developers use it
+
+Docker Compose is especially useful for:
+
+* Local development environments
+* Testing microservices
+* Full-stack apps
+* CI/CD pipelines
+
+Instead of manually installing databases or services on your machine, everything runs in isolated containers.
+
+---
+
+## Simple mental model
+
+Think of:
+
+* **Docker** = runs one container
+* **Docker Compose** = manages a group of related containers together
+
+---
+
+## Example real-world stack
+
+A typical web application might use:
+
+| Service       | Container  |
+| ------------- | ---------- |
+| Frontend      | React      |
+| Backend API   | Node.js    |
+| Database      | PostgreSQL |
+| Cache         | Redis      |
+| Reverse Proxy | Nginx      |
+
+Docker Compose can start all of them with:
+
+```bash
+docker compose up
+```
+
+---
+
+## Modern note
+
+Older versions used the command:
+
+```bash
+docker-compose
+```
+
+Newer versions use:
+
+```bash
+docker compose
+```
+
+(with a space), because Compose is now built into Docker itself.
+
+
+
+
+
+
+#writing docer file
+FROM python:3.13
+WORKDIR /usr/local/app
+
+# Install the application dependencies
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy in the source code
+COPY src ./src
+EXPOSE 8080
+
+# Setup an app user so the container doesn't run as the root user
+RUN useradd app
+USER app
+
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8080"]
