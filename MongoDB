@@ -1,0 +1,201 @@
+Excellent question. This is exactly the kind of follow-up interviewers ask after sharding.
+
+The answer is:
+
+> No, MongoDB does NOT usually check every server one by one.
+
+Because MongoDB uses something called a **Shard Key**.
+
+---
+
+# Real-Life Example
+
+Suppose user data is divided like this:
+
+| Server  | Data               |
+| ------- | ------------------ |
+| Shard 1 | User IDs 1–1000    |
+| Shard 2 | User IDs 1001–2000 |
+| Shard 3 | User IDs 2001–3000 |
+
+Now suppose you request:
+
+```javascript id="0cw7r0"
+find user_id = 2500
+```
+
+MongoDB already knows:
+
+* user 2500 belongs to Shard 3
+
+So request goes directly to:
+
+* Shard 3 only
+
+NOT:
+
+* Shard 1
+* Shard 2
+* then Shard 3
+
+---
+
+# Who Decides This?
+
+MongoDB has a component called:
+
+## `mongos` (Query Router)
+
+Its job:
+
+* receive request
+* check shard key
+* route request to correct shard
+
+---
+
+# Architecture
+
+```text id="yfmzwz"
+Application
+     ↓
+   mongos
+(Query Router)
+     ↓
+ -------------------
+| Shard1 | Shard2 | Shard3 |
+ -------------------
+```
+
+---
+
+# What is Shard Key?
+
+Very important concept.
+
+> Shard key is the field MongoDB uses to decide where data should live.
+
+Example:
+
+```javascript id="4fz8v5"
+{
+  user_id: 2500,
+  name: "Praveen"
+}
+```
+
+If `user_id` is shard key:
+
+* MongoDB knows exactly where data belongs
+
+---
+
+# Then When Does MongoDB Search All Servers?
+
+This is called:
+
+## Scatter-Gather Query
+
+Happens when query does NOT contain shard key.
+
+Example:
+
+```javascript id="cf85bx"
+find({ name: "Praveen" })
+```
+
+If `name` is NOT shard key:
+
+* MongoDB doesn't know which shard contains data
+* so it asks ALL shards
+
+```text id="gvy9rf"
+Shard1 ?  
+Shard2 ?  
+Shard3 ?
+```
+
+Then combines results.
+
+---
+
+# Why Scatter-Gather is Bad?
+
+Because:
+
+* slower
+* more network usage
+* more CPU usage
+
+That’s why choosing proper shard key is VERY important.
+
+---
+
+# Interview-Level Answer
+
+If interviewer asks:
+
+## “Will MongoDB search all shards?”
+
+Best answer:
+
+> No, if the query contains the shard key, MongoDB routes request directly to the correct shard using mongos router.
+> If shard key is missing, MongoDB performs scatter-gather query by checking multiple shards.
+
+This is a strong advanced answer.
+
+---
+
+# Example
+
+Suppose shard key = `user_id`
+
+## Good Query
+
+```javascript id="a3d9gq"
+find({ user_id: 2500 })
+```
+
+→ Direct shard access
+→ Fast
+
+---
+
+## Bad Query
+
+```javascript id="8m2n9l"
+find({ city: "Hyderabad" })
+```
+
+→ Searches many shards
+→ Slower
+
+---
+
+# One More Important Thing
+
+A bad shard key can create:
+
+## Hotspot Problem
+
+Example:
+
+* all new users go to one shard only
+
+Then:
+
+* one server overloaded
+* others idle
+
+So shard key should:
+
+* distribute data evenly
+* be frequently used in queries
+
+---
+
+# Very Strong Interview Statement
+
+> Sharding improves scalability, but efficient querying depends heavily on proper shard key selection. Poor shard keys can lead to scatter-gather queries and uneven shard utilization.
+
+That sounds senior-level.
