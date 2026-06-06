@@ -64,6 +64,8 @@ class Solution(object):
 
 
 #Non overlaping palindrom 2472******************
+#input: s = "abaccdbbd", k = 3
+#output: 2
 
 class Solution(object):
     def maxPalindromes(self, s, k):

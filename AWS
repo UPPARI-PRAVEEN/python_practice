@@ -182,19 +182,6 @@ It automatically monitors the application and scales when needed.
 
 👉 “Elastic Beanstalk is used to deploy applications without worrying about infrastructure setup.”
 
----
-
-## ⚡ Simple Understanding
-
-* EC2 → You manage server
-* Beanstalk → AWS manages server for you
-
----
-
-If you want, I can give:
-👉 **EC2 vs Beanstalk vs Docker (very important interview comparison)**
-
-
 what is CDN?
 A CDN (Content Delivery Network) is a distributed network of servers used to deliver content to users faster based on their geographic location.
 

@@ -542,6 +542,68 @@ for i in range(k,len(arr)):
     max_sum = max(max_sum,window_sum)
 print(max_sum)
 
+########### Valid paranthesis
+# Input: s = "([{}])"
+# Output: True
+
+# Input: s = "(]"
+# Output: False
+
+s = "([{}])"
+hp = {
+    ")":"(",
+    "}": "{",
+    "]":"["
+}
+stack = []
+for val in s:
+    if val in hp:
+        if stack and stack[-1] != hp[val]:
+             print(False)
+             break
+        stack.pop()
+        
+       
+    else:
+        stack.append(val)
+print(stack)
+
+##### make it into single array
+#[1, 2, 3, 1, 4, 5, 6, 7]
+obj = {
+    "key1": [1, 2, 3],
+    "key2": [1, "$", 4],
+    "key3": [5, 6],
+    "key4": 7
+}
+res = []
+for val in obj.values():
+    if isinstance(val,list):
+        for i in val:
+            if isinstance(i,int):
+                res.append(i)
+    else:
+        res.append(val)
+print(res)
+
+#********** find all anagrams in a string leetcode 438 ******************
+
+# Input: strs = ["eat", "tea", "tan", "ate", "nat", "bat"]
+# Output: [["eat","tea","ate"], ["tan","nat"], ["bat"]]
+
+strs = ["eat", "tea", "tan", "ate", "nat", "bat"]
+hp = {}
+
+for val in strs:
+    sortVal = "".join(sorted(val))
+    if sortVal in hp:
+        hp[sortVal].append(val)
+    else:
+        hp[sortVal] = [val]
+print(list(hp.values()))
+
+    
+
 #********** Revemove duplicates from sorted array **********
 arr = [1, 1, 2, 2, 3, 3]
 # ourput: [1, 2, 3] (the first three elements of the array are now 1, 2, and 3, and the rest of the elements can be ignored)
