@@ -567,6 +567,28 @@ for val in s:
     else:
         stack.append(val)
 print(stack)
+##### pritn output {a.b.c:1}
+obj = {
+    a:{b:{c:1}}
+}
+clone = Object.assign(obj)
+
+function fn(hp,pre,res){
+   
+    for(let [key,val] of Object.entries(hp)){
+        targetKey = pre ? `${pre}.${key}` : key
+        if(typeof(val) == 'object' && val !== ""){
+            fn(val,targetKey,res)
+        }else{
+            
+            res[targetKey]=val
+        }
+    }
+    return res
+}
+
+result = fn(obj,"",{})
+console.log(result)
 
 ##### make it into single array
 #[1, 2, 3, 1, 4, 5, 6, 7]
