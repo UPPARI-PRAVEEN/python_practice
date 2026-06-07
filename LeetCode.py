@@ -590,6 +590,16 @@ function fn(hp,pre,res){
 result = fn(obj,"",{})
 console.log(result)
 
+#count accurance of each character in val
+arr = [1,2,2,4,3,3,3]
+res = {}
+for val in arr:
+    if val in res:
+        res[val] +=1
+    else:
+        res[val] = 1
+print(res)
+
 ##### make it into single array
 #[1, 2, 3, 1, 4, 5, 6, 7]
 obj = {
