@@ -632,6 +632,38 @@ for right in range(len(s)):
     res = max(res,right-left + 1)
 print(res)
 
+#********** valid anagram leetcode 242 ******************
+# Input: s = "anagram", t = "nagaram"
+# Output: true (the strings "anagram" and "nagaram" are anagrams of each other, 
+#meaning they contain the same characters in the same frequency, just in a different order. Therefore, the output is true.)
+class Solution(object):
+    def isAnagram(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: bool
+        """
+        hp ={}
+        for i in range(len(s)):
+            if len(s) != len(t):
+                return False
+            if s[i] in hp:
+                hp[s[i]] +=1
+            else:
+                hp[s[i]] = 1
+        
+        for i in range(len(s)):
+
+            if t[i] not in hp:
+                return False
+            
+            if t[i] in hp:
+                hp[t[i]] -=1
+                if hp[t[i]] <0:
+                    return False
+        return True
+        
+
 
 
 
