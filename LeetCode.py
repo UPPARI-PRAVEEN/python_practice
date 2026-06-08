@@ -589,7 +589,71 @@ function fn(hp,pre,res){
 
 result = fn(obj,"",{})
 console.log(result)
+#Remove DUplicate optimal
+arr = [1,2,2,4,3,3,3]
 
+i =0;
+while i < len(arr):
+    j = i+1
+    while j < len(arr):
+        if arr[i] == arr[j]:
+            arr.pop(j)
+        else:
+            j +=1
+    i +=1
+print(arr)
+
+
+#### longest repeating character replacement leetcode 424
+
+s = "AABABBA"
+k = 1
+
+left = 0
+hp = {}
+maxFreq = 0
+res = 0
+# Length = Right - Left + 1
+
+# Replacements Needed =
+# Length - MaxFreq
+
+for right in range(len(s)):
+    if s[right] in hp:
+        hp[s[right]] +=1
+    else: 
+        hp[s[right]] = 1
+    
+    maxFreq = max(maxFreq,hp[s[right]])
+    
+    while (right - left + 1) - maxFreq >k:
+        hp[s[left]] -=1
+        left +=1
+    res = max(res,right-left + 1)
+print(res)
+
+
+
+
+# Input:
+# ["2A", "3B", "4C"]
+# Expected Output:
+# ["AA", "BBB", "CCCC"]
+# Explanation: The first string "2A" indicates that 'A' should be repeated 2 times, resulting in "AA". 
+#The second string "3B" indicates that 'B' should be repeated 3 times, resulting in "BBB". The third 
+#string "4C" indicates that 'C' should be repeated 4 times, resulting in "CCCC". Therefore, 
+#the final output is ["AA", "BBB", "CCCC"].
+
+arr = ["2A", "3B", "4C"]
+
+res = []
+for val in arr:
+    s = ""
+    if len(val) == 2:
+        for i in range(int(val[0])):
+            s += val[1:]
+    res.append(s)
+print(res)
 #count accurance of each character in val
 arr = [1,2,2,4,3,3,3]
 res = {}
