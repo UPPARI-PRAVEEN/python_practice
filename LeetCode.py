@@ -632,6 +632,24 @@ for right in range(len(s)):
     res = max(res,right-left + 1)
 print(res)
 
+#********** longest common prefix leetcode 14 ******************
+# Input: strs = ["flower","flow","flight"]
+# Output: "fl"
+
+strs = ["flower","flow","flight"]
+
+ref = strs[0]
+res = 0
+
+for i in range(len(strs)):
+    
+    for word in strs[1:]:
+        
+        if word[i] != ref[i]:
+           return ref[:i]
+print(ref[:i])
+            
+
 #********** valid anagram leetcode 242 ******************
 # Input: s = "anagram", t = "nagaram"
 # Output: true (the strings "anagram" and "nagaram" are anagrams of each other, 
