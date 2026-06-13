@@ -632,6 +632,25 @@ for right in range(len(s)):
     res = max(res,right-left + 1)
 print(res)
 
+#### remove adjacent duplicates leetcode 1047
+# Input: s = "abbaca"
+# Output: "ca"
+# Explanation:
+# "abbaca" → remove "bb" → "aaca"
+# "aaca" → remove "aa" → "ca"
+s = "abbaca"
+stack =[]
+
+for i in range(len(s)):
+    if stack and stack[-1] == s[i]:
+        print("True")
+        stack.pop()
+    else:
+        stack.append(s[i])
+        
+    
+print(stack)
+
 #********** longest common prefix leetcode 14 ******************
 # Input: strs = ["flower","flow","flight"]
 # Output: "fl"
