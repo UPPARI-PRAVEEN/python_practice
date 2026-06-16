@@ -632,6 +632,33 @@ for right in range(len(s)):
     res = max(res,right-left + 1)
 print(res)
 
+
+##### 
+problem: Check if String is Palindrome (Ignore Special Characters)
+
+Given a string s, check if it is a palindrome after:
+
+Converting all letters to lowercase
+Removing all non-alphanumeric characters
+# Input: s = "A man, a plan, a canal: Panama"
+# Output: True
+
+s = "A man, a plan, a canal: Panama".lower()
+def isPalin(start,end,st):
+    while start < end:
+        if st[start] != st[end]:
+            return False
+        start +=1
+        end -= 1
+    return True
+
+st = ""
+for i in range(len(s)):
+    if ord(s[i]) >= 97 and ord(s[i]) <= 122:
+        st += s[i]
+print(isPalin(0,len(st)-1,st))
+
+
 #### remove adjacent duplicates leetcode 1047
 # Input: s = "abbaca"
 # Output: "ca"
