@@ -633,7 +633,7 @@ for right in range(len(s)):
 print(res)
 
 
-##### 
+##### Leetcode 125 
 problem: Check if String is Palindrome (Ignore Special Characters)
 
 Given a string s, check if it is a palindrome after:
@@ -642,6 +642,8 @@ Converting all letters to lowercase
 Removing all non-alphanumeric characters
 # Input: s = "A man, a plan, a canal: Panama"
 # Output: True
+
+
 
 s = "A man, a plan, a canal: Panama".lower()
 def isPalin(start,end,st):
