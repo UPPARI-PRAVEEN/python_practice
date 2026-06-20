@@ -643,7 +643,18 @@ Removing all non-alphanumeric characters
 # Input: s = "A man, a plan, a canal: Panama"
 # Output: True
 
+# Input: 9875 → 9+8+7+5 = 29 → 2+9 = 11 → 1+1 = 2
 
+num = 9875
+
+while num > 10:
+    dum = 0
+    while num != 0:
+        digit = num % 10
+        dum += digit
+        num = num // 10
+    num = dum
+print(num)
 
 s = "A man, a plan, a canal: Panama".lower()
 def isPalin(start,end,st):
