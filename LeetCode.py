@@ -867,6 +867,21 @@ for num in arr:
 
 print(expected_sum - actual_sum)
 
+###### find the first missing positive integer in an unsorted array
+
+
+arr = [2, 4, -1, 1]
+
+# 1. Convert to a set for O(1) lookups
+num_set = set(arr)
+
+# 2. Start checking from the smallest positive integer
+missing = 1
+while missing in num_set:
+    missing += 1
+
+print(missing)  # Outputs: 3
+
 #************* max sum array ****************
 arr = [-2,1,-3,4,-1,2,1,-5,4]
 # Output: 6
