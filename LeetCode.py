@@ -871,7 +871,7 @@ print(expected_sum - actual_sum)
 
 
 arr = [2, 4, -1, 1]
-
+# output: 3 (the smallest missing positive integer is 3, as the array contains 1, 2, and 4, but does not contain 3)
 # 1. Convert to a set for O(1) lookups
 num_set = set(arr)
 
