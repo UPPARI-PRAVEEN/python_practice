@@ -243,7 +243,6 @@ for i in range(len(arr)):
         hp[arr[i]] +=1
     else:
         hp[arr[i]] = 1
-
 sortedArr = sorted(hp.items(),key = lambda item:item[1],reverse = True)
 arr.clear()
 for key,val in sortedArr:
@@ -251,10 +250,6 @@ for key,val in sortedArr:
     for _ in range(val):
         res.append(key)
 print(res)
-
-
-
-
 # cecking amstrong number or not
 num = 153;
 temp = num;
@@ -268,15 +263,13 @@ def countNum(val):
     return count;
 def isMul(num, count):
     return num ** count  
-def result(count,num):
-    
+def result(count,num):    
     sumNum = 0;
     for i in range(0,count):
         print(num,"number digit")
         sumNum += isMul(num % 10,count)
         num = num // 10;
-    return sumNum;
-        
+    return sumNum;        
 count = countNum(num)
 res = result(count,num)
 print(res)
@@ -284,34 +277,24 @@ if res == temp:
     print("is amstromstorn number");
 else:
     print("not amstrong number")
-
-
 # ********* sypnum     
     num = 1124
-
 def sumOfdigit(num, isAdd):
-    result = 0 if isAdd else 1   # ✔ Python ternary
-
+    result = 0 if isAdd else 1   # ✔ Python ternary operator to initialize result based on isAdd
     val = num
     while val != 0:
         digit = val % 10
-
         if isAdd:
             result += digit
         else:
             result *= digit
-
         val = val // 10
-
     return result
 sumNum = sumOfdigit(num,True)
 mulNum = sumOfdigit(num,False)
 print(sumNum,mulNum)
-
-
 #  factorial of number
 num = 5
-
 def fact(num):
     if num == 0:
         return 1
@@ -324,10 +307,8 @@ res = 1;
 for i in range(1,num+1):
     res = res * i;
 print(res)
-
 prime = 11
 isPrime = True
-
 for i in range(2,5):
     if prime % i == 0:
         isPrime =False
@@ -337,7 +318,7 @@ if isPrime :
 else:
     print("not a primenumber")
 
-print prime numbers in range or 1 to n
+#print prime nu#mbers in range or 1 to n
 n = 20;   
 for i in range(2,n+1):
     isPrime = True    
@@ -346,9 +327,7 @@ for i in range(2,n+1):
             isPrime = False
             break 
     if isPrime:
-        print(i)  
-
-
+        print(i) 
 ls = [1,0,2,0,3,0,4]
 #move zero to end
 pos = 0
@@ -358,7 +337,6 @@ for i in range(len(ls)):
         pos += 1
 
 print(ls)
-
 string = "aabbcde"
 # Output: c fist occurance not repeating character
 revString = ""
@@ -370,20 +348,16 @@ for i in range(len(string)-1):
         revString += string[i]
 
 string = "aabbcde"
-
 freq = {}
-
 for ch in string:
     freq[ch] = freq.get(ch, 0) + 1
-
 for ch in string:
     if freq[ch] == 1:
         print(ch)
         break
 
-
+# second largest number in array
 arr = [10, 5, 8, 20, 20]
-
 first = float('-inf')
 second = float('-inf')
 
@@ -393,12 +367,10 @@ for num in arr:
         first = num
     elif first > num > second:
         second = num
-
 print(second)
 #***** longest substring without repeating characters leetcode 3
 s = "abcabcbb"
 # Output: "abc"
-
 def longesSub(string):
     logGeststr = "";
     for i in range(len(string)):
