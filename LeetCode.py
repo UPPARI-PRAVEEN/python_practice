@@ -119,11 +119,15 @@ for i in range(len(transactions)):
         dic[transactions[i]["user"] ] = transactions[i]["amount"]
        
 print(dic)
-    
+#to find the sum of all transactions for each user, we can use a dictionary to keep track of the total 
+#amount for each user. We iterate through the list of transactions, and for each transaction, we check if the 
+#user is already in the dictionary. If they are, we add the transaction amount to their total; if not, we initialize 
+#their total with the transaction amount. Finally, we print the resulting dictionary.    
+
 ls = [1,2,3,4,5,6];
 k = 3;
+# rotate the array to the right by k steps, where k is non-negative.
 #[4, 5, 6, 1, 2, 3]
-
 def reverse(ls,st,ed):
     
     while st < ed:
@@ -137,11 +141,7 @@ def reverse(ls,st,ed):
 reverse(ls,0,len(ls)-1)
 reverse(ls,0,k-1)
 reverse(ls,k,len(ls)-1)
-
-
 print(ls)
-
-
 #**** max sum of subarray leetcode 53 ******************
 ls =  [-2,1,-3,4,-1,2,1,-5,4]
 #output: 6 (subarray [4,-1,2,1] has the largest sum = 6)
