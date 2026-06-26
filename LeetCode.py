@@ -145,7 +145,6 @@ print(ls)
 #**** max sum of subarray leetcode 53 ******************
 ls =  [-2,1,-3,4,-1,2,1,-5,4]
 #output: 6 (subarray [4,-1,2,1] has the largest sum = 6)
-
 max_sum = float('-inf')
 curr_sum = 0;
 tempStart = 0
@@ -168,19 +167,15 @@ st = "I love python"
 # Output: "python love I"
 res = "";
 word = ""
-for ch in st:
-    
+for ch in st:    
     if ch != ' ':
         word += ch;
     else: 
         res = word + " " + res;
         word = ""
 res = word + " " + res
-
 print(res)
-
 #**** find all subarray with given sum
-
 ls = [1,3,2,4]
 #out = 
 targetSum = 6
@@ -198,7 +193,6 @@ for i in range(len(ls)):
             res.append(nested[:])   # copy because nested will change in next iteration what happens if we append nested directly 
                                         nested will be modified in next iteration and res will have reference to nested so it will change as well
             break
-
 print(res)#[[1, 3, 2], [2, 4]]
 #optimized approach using hashmap prefix sum
 hp = {}
@@ -210,13 +204,11 @@ for i in range(len(ls)):
         res.append(ls[:i+1])
     
     if (curr_sum - targetSum) in hp:
-        res.append(ls[hp[curr_sum - targetSum] + 1 : i + 1])
-    
+        res.append(ls[hp[curr_sum - targetSum] + 1 : i + 1])    
     hp[curr_sum] = i
 print(res)#[[1, 3, 2], [2, 4]]
-
-
-
+# convert each character to its next character in the alphabet, and if the character is 'z' or 'Z', 
+#wrap around to 'a' or 'A'. Then reverse the string.
 st = "xyz" #azy
 res = ""
 for ch in st:
@@ -228,28 +220,22 @@ for ch in st:
     res = chars + res
     chars = ""
 print(res)
-
 #**** sort array based on frequency of elements
 #input: arr = [1, 1, 2, 3, 3, 3]
 #output: [3, 3, 3, 1, 1, 2] (the number 3 appears three times, the number 1 appears twice, and the number 2 appears once. So the sorted array is [3, 3, 3, 1, 1, 2])
-
 hp = {}
-
 for i in range(len(arr)):
     if arr[i] in hp:
         hp[arr[i]] +=1
     else:
         hp[arr[i]] = 1
-
 for i in range(len(arr)):
     for j in range(len(arr)-1-i):
         if hp[arr[j]] < hp[arr[j+1]]:
             arr[j],arr[j+1] = arr[j+1],arr[j]
 print(arr)
-
 #mehod 2
 arr = [3,3,1,2,2,2,8,8,8,8,8]
-
 hp = {}
 res = []
 for i in range(len(arr)):
