@@ -51,7 +51,7 @@ else:
     print("no missing number")
 
 ls = [1, 6]
-
+###Group missing numbers in list
 for i in range(len(ls)-1):
     if ls[i]+1 != ls[i+1]:
         for j in range(ls[i]+1,ls[i+1]):
@@ -77,7 +77,6 @@ for ch in st:
         break;
 # or Else we do using count method of string
 st = "bmmbabbmmb"
-
 for i in range(len(st)):
     if st.count(st[i]) == 1:
         print(st[i])
