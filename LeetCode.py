@@ -368,33 +368,11 @@ for num in arr:
     elif first > num > second:
         second = num
 print(second)
-#***** longest substring without repeating characters leetcode 3
-s = "abcabcbb"
-# Output: "abc"
-def longesSub(string):
-    logGeststr = "";
-    for i in range(len(string)):
-        subStr = ""
-        for j in range(i,len(string)-1):
-            if string[j] in subStr:
-                break;
-            else:
-                subStr += string[j];
-        if len(subStr) > len(logGeststr):
-            logGeststr = subStr
-            
-    return logGeststr;
-sorting1 = longesSub(s)
-print(sorting1)
-
-
 #**** count of each character in string  leetcode 443
 s = "aaabbcc"
 # Output: "a3b2c1"
 res = "";
 count = 0;
-
-
 for i in range(len(s)-1):
     ch = s[i];
     if ch == s[i+1]:
@@ -402,33 +380,25 @@ for i in range(len(s)-1):
         print(ch,count)
     else:
         res = res + ch + str(count+1)
-        
         count = 0
 res = res + s[-1] + str(count + 1)
 print(res)
-
-
 #**** find all elements which are greater than next element in list leetcode  leaders in array  6
 ls = [16, 17, 4, 3, 5, 2]
 res = []
-
 # The rightmost element is always a leader
 current_max = ls[-1]
 res.append(current_max)
-
 # Start from the second to last element and move backwards
 for i in range(len(ls) - 2, -1, -1):
     if ls[i] > current_max:
         current_max = ls[i]
         res.append(current_max)
-
 # Since we collected them backwards, reverse to match original order
 res.reverse()
 print(res)  # Output: [17, 5, 2]
-
 nums = [2,7,11,15]
 target = 9
-
 mp = {}
 
 for i in range(len(nums)):
@@ -439,40 +409,28 @@ for i in range(len(nums)):
         break
     
     mp[nums[i]] = i
-
 s = "madams"
 ls = list(s);
 start = 0;
 end = len(ls)-1
-while start < end:
-   
-    
-    ls[start],ls[end] = ls[end],ls[start]
-        
+while start < end:   
+    ls[start],ls[end] = ls[end],ls[start]        
     start+=1;
     end-=1;
 print("".join(ls))
-
 s = "madam"
-
 start = 0
 end = len(s) - 1
-
 isPalindrome = True
-
 while start < end:
     if s[start] != s[end]:
         isPalindrome = False
         break
     start += 1
     end -= 1
-
 print(isPalindrome)
-
-
 ls = [1,-2,3,-4,5]
 # Output: [-2,-4,1,3,5]  (order not important)
-
 start =0
 end = len(ls)-2
 
@@ -480,15 +438,12 @@ while start < end:
     if ls[start] > 0:
         ls[start],ls[end] = ls[end],ls[start]
     start +=1
-    end -=1
-    
+    end -=1    
 print(ls)
-
 ++++++++++++++++++++++++++++++++++++++++++++ + sliding window ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 **************** find max sum of subarray of size k  ****************
 arr = [2,1,5,1,3,2]
 k = 3
-
 # Output: 9   # (5+1+3)
 window_sum = sum(arr[:k])
 max_sum = window_sum
@@ -498,29 +453,26 @@ for i in range(k,len(arr)):
     window_sum -= arr[i-k]
     max_sum = max(max_sum,window_sum)
 print(max_sum)
-
 ########### Valid paranthesis
 # Input: s = "([{}])"
 # Output: True
-
 # Input: s = "(]"
 # Output: False
-
 s = "([{}])"
 hp = {
     ")":"(",
     "}": "{",
     "]":"["
 }
+
 stack = []
 for val in s:
     if val in hp:
+        #if stack last ele will enclosing to "{" --> "}" then pop otherwise reurn false exist from the loop
         if stack and stack[-1] != hp[val]:
              print(False)
              break
-        stack.pop()
-        
-       
+        stack.pop() 
     else:
         stack.append(val)
 print(stack)
@@ -543,7 +495,6 @@ function fn(hp,pre,res){
     }
     return res
 }
-
 result = fn(obj,"",{})
 console.log(result)
 #Remove DUplicate optimal
