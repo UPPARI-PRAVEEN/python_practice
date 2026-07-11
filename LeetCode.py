@@ -511,6 +511,24 @@ while i < len(arr):
     i +=1
 print(arr)
 
+################# Majority Element leetcode 169
+# Input: nums = [2,2,1,1,1,2,2]
+# Output: 2
+nums = [3,2,3]
+
+majority = len(nums)//2
+hp = {}
+for i in range(len(nums)):
+    if nums[i] in hp:
+        hp[nums[i]] += 1
+    else:
+        hp[nums[i]] = 1
+
+for key,val in hp.items():
+    # print(key,val)
+    if val > majority:
+        print(key)
+
 
 #### longest repeating character replacement leetcode 424
 
