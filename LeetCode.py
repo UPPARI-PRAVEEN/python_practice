@@ -530,6 +530,26 @@ for key,val in hp.items():
         print(key)
 
 
+#Common subsequence leetcode 1143
+# Input: [100,4,200,1,3,2]
+# Output: 4   # [1,2,3,4]
+arr =  [100,4,200,1,3,2]
+setArr = set(arr)
+print(setArr)
+count =0
+
+for val in setArr:
+    currCount = 0
+    if val - 1 not in setArr:
+        curr = val
+        while curr in setArr:
+            currCount +=1
+            curr += 1
+    count = max(count,currCount)
+print(count)
+    
+
+
 #### longest repeating character replacement leetcode 424
 
 s = "AABABBA"
