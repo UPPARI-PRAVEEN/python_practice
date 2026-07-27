@@ -124,8 +124,8 @@ print(dic)
 #user is already in the dictionary. If they are, we add the transaction amount to their total; if not, we initialize 
 #their total with the transaction amount. Finally, we print the resulting dictionary.    
 
-ls = [1,2,3,4,5,6];
-k = 3;
+ls = [1,2,3,4,5,6]
+k = 3
 # rotate the array to the right by k steps, where k is non-negative.
 #[4, 5, 6, 1, 2, 3]
 def reverse(ls,st,ed):
@@ -134,8 +134,8 @@ def reverse(ls,st,ed):
         temp = ls[st]
         ls[st] = ls[ed]
         ls[ed] = temp
-        st += 1;
-        ed -= 1;
+        st += 1
+        ed -= 1
     return ls
 
 reverse(ls,0,len(ls)-1)
@@ -146,10 +146,10 @@ print(ls)
 ls =  [-2,1,-3,4,-1,2,1,-5,4]
 #output: 6 (subarray [4,-1,2,1] has the largest sum = 6)
 max_sum = float('-inf')
-curr_sum = 0;
+curr_sum = 0
 tempStart = 0
 start = 0
-end = 0;
+end = 0
 
 for i in range(len(ls)):
     if curr_sum == 0:
