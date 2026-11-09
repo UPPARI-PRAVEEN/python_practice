@@ -1954,6 +1954,29 @@ for i in range(len(nums)):
         mp[currSum] = i
 
 print(maxLen)
+
+
+#********* Get Unique Elements from List ******************
+def getUnique(item):
+  res = []
+  for i in range(item):
+    if i not in res:
+      res.append(i)
+  return res
+    
+
+print(getUnique(["praveen","arun","praveen"]))
+    
+
+
+
+
+
+
+
+
+
+
                     
             
             
